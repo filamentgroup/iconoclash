@@ -1,6 +1,9 @@
 /* Iconoclash: CSS properties exposed from SVGs */
 :root {
-
+--iconglobal-0: initial;
+--lamp-path1-fill: initial;
+--skate-path2-fill: initial;
+--vespa-path3-fill: initial
 }
 
 .icon-lamp{ background-image: url('icons.svg#lamp') }

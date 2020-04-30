@@ -90,9 +90,9 @@
 					var itemVar = "--" + parentName + "-" + elemType + (i+1) + "-" + prop;
 					var fallback = this.attribs[prop] || "initial";
 
-		
 					if( !globals[fallback] && fallback !== "initial" ) {
 						globals[fallback] = "--iconglobal-" + k++;
+						CSS.push( globals[fallback] + ": initial" );
 					}
 
 					if( globals[fallback] ){
@@ -101,10 +101,11 @@
 					else {
 						customProps[ j ] += ":  var("+ itemVar + "," + fallback +")";
 					}
+					CSS.push( itemVar + ": initial" );
 					
 					logger.verbose( "    - Iconoclash added a style to the "+ elemType + ": " + customProps[ j ]);
 
-					//CSS.push( cssVar + ":" + (this.attribs[prop] || "initial") );
+					
 				}
 				this.attribs.style = customProps.join(";");
 			}
