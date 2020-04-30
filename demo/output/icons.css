@@ -1,8 +1,8 @@
 /* Iconoclash: CSS properties exposed from SVGs */
 :root {
---vespa-shape1-fill:#E2574C;
---vespa-shape2-transform:initial;
---vespa-shape2-color:initial;
---vespa-shape2-background-color:initial;
---vespa-shape2-fill:#AAAAAA
+--vespa-path1-fill:#E2574C;
+--vespa-path2-transform:initial;
+--vespa-path2-color:initial;
+--vespa-path2-background-color:initial;
+--vespa-path2-fill:#AAAAAA
 }
