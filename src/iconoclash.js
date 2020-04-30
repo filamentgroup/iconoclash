@@ -71,17 +71,21 @@
 		sprites.element("[id*='" + config.idKey + "']").each(function(i){
 			var parentName = this.parentNode.attribs.id;
 			var id = this.attribs.id;
+			var elemType = this.name;
 			var afterKey = id.split( config.idKey )[1];
 			// assume any space separated values after the key are css props to expose
 			var customProps = afterKey.match(/([^ _\d]+)/g);
 			if( customProps.length ){
-				logger.ok( "Iconoclash found an SVG shape with CSS properties to expose: " + customProps.join(", "));
+				logger.verbose( "Iconoclash found an SVG "+ elemType +" with CSS properties to expose: " + customProps.join(", "));
 
 				for( var j = 0; j < customProps.length; j++ ){
 					var prop = customProps[ j ];
-					var cssVar = "--" + parentName + "-shape" + (i+1) + "-" + prop;
+					var cssVar = "--" + parentName + "-" + elemType + (i+1) + "-" + prop;
 					customProps[ j ] += ": var(" + cssVar + ")";
+					logger.verbose( "    - Iconoclash added a style to the "+ elemType + ": " + customProps[ j ]);
+
 					CSS.push( cssVar + ":" + (this.attribs[prop] || "initial") );
+					logger.verbose( "    - Iconoclash set the default of the "+ cssVar +" CSS property to '"+ (this.attribs[prop] || "initial") +"'" );
 				}
 				this.attribs.style = customProps.join(";");
 			}
