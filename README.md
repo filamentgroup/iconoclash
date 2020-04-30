@@ -60,17 +60,17 @@ $ cd demo && node testrun
 The Iconoclash function accepts a third option to override these defaults:
 
 ```
-var defaults = {
-		iconcss: 'icons.css',
-		iconsvg: 'icons.svg',
-		previewhtml: "icons.html",
-		idKey: "iconoclash",
-		banner: "/* Iconoclash: CSS properties exposed from SVGs */",
-		verbose: true,
-		logger: {
-			verbose: console.info,
-			fatal: console.error,
-			ok: console.log
-		}
-	};
+{
+    iconcss: 'icons.css', // output css file
+    iconsvg: 'icons.svg', // output svg file
+    previewhtml: "icons.html", // output html file
+    idKey: "iconoclash", // the word to look for in element IDs before the properties list
+    banner: "/* Iconoclash: CSS properties exposed from SVGs */",
+    verbose: false, // additional logging 
+    logger: {
+        verbose: console.info,
+        fatal: console.error,
+        ok: console.log
+    }
+}
 ```

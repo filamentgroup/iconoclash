@@ -14,7 +14,7 @@
 		previewhtml: "icons.html",
 		idKey: "iconoclash",
 		banner: "/* Iconoclash: CSS properties exposed from SVGs */",
-		verbose: true,
+		verbose: false,
 		logger: {
 			verbose: console.info,
 			fatal: console.error,
