@@ -1,0 +1,22 @@
+<h1>Deeply customize an external SVG's colors.</h1>
+
+<link rel="stylesheet" href="icons.css">
+
+<p>The <a href="icons.svg">external icons.svg file</a> has paths that use overrideable CSS custom property fill styles. This allows for deeper customization than setting CSS rules that would otherwise apply globally to the use element.</p>
+
+<svg width="100" height="100">
+    <use xlink:href="icons.svg#vespa"></use>
+ </svg>
+
+<svg width="100" height="100">
+    <use xlink:href="icons.svg#vespa" style="--vespa-shape1-fill:blue;--vespa-shape2-fill:green;"></use>
+ </svg>
+
+ <svg width="100" height="100">
+    <use xlink:href="icons.svg#lamp"></use>
+</svg>
+
+<svg width="100" height="100">
+    <use xlink:href="icons.svg#skate"></use>
+</svg>
+
