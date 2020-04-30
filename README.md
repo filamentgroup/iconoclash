@@ -38,3 +38,39 @@ These custom properties can be overridden from the HTML or another stylesheet, e
     <use xlink:href="icons.svg#baseball" style="--baseball-g1-fill:blue;--baseball-g1-transform:rotate(90deg);"></use>
  </svg>
  ```
+
+## Usage
+
+Pass an array of file paths and an output folder path to the  Iconoclash function.
+
+```js 
+var Iconoclash = require('../src/iconoclash');
+var iconoclash = new Iconoclash( ["./svg/lamp.svg", "./svg/skate.svg", "./svg/vespa.svg"], "./output/" );
+iconoclash.process();
+```
+
+You can try this by running the testrun file like this:
+
+```
+$ cd demo && node testrun
+```
+
+### options
+
+The Iconoclash function accepts a third option to override these defaults:
+
+```
+var defaults = {
+		iconcss: 'icons.css',
+		iconsvg: 'icons.svg',
+		previewhtml: "icons.html",
+		idKey: "iconoclash",
+		banner: "/* Iconoclash: CSS properties exposed from SVGs */",
+		verbose: true,
+		logger: {
+			verbose: console.info,
+			fatal: console.error,
+			ok: console.log
+		}
+	};
+```
