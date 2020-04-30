@@ -58,19 +58,26 @@
 		var that = this;
 		logger.ok( "Iconoclash is processing " + this.files.length + " svg files." );
 
-		var CSS = [];
+		var CSS = [  ];
+		var classes = [];
+		var HTML = [];
+		var globals = {};
 		var sprites = svgstore();
 
 		this.files.forEach(function(file) {
 			let stat= fs.statSync(file);
 			if ( stat.isFile() && file.indexOf(".svg") > -1 ) {  
-				sprites.add(that._symbolIDFromFile(file), fs.readFileSync(file, 'utf8'));
+				let id = that._symbolIDFromFile(file);
+				sprites.add(id, fs.readFileSync(file, 'utf8'));
+				classes.push( ".icon-" + id + "{ background-image: url('"+ config.iconsvg +"#"+ id +"') }" )
 			}
 		}); 
 
+		var k = 0;
 		sprites.element("[id*='" + config.idKey + "']").each(function(i){
+
 			var parentName = this.parentNode.attribs.id;
-			var id = this.attribs.id;
+			var id = this.attribs.id;			
 			var elemType = this.name;
 			var afterKey = id.split( config.idKey )[1];
 			// assume any space separated values after the key are css props to expose
@@ -80,19 +87,31 @@
 
 				for( var j = 0; j < customProps.length; j++ ){
 					var prop = customProps[ j ];
-					var cssVar = "--" + parentName + "-" + elemType + (i+1) + "-" + prop;
-					customProps[ j ] += ": var(" + cssVar + ")";
+					var itemVar = "--" + parentName + "-" + elemType + (i+1) + "-" + prop;
+					var fallback = this.attribs[prop] || "initial";
+
+		
+					if( !globals[fallback] && fallback !== "initial" ) {
+						globals[fallback] = "--iconglobal-" + k++;
+					}
+
+					if( globals[fallback] ){
+						customProps[ j ] += ": var(" + itemVar + ", var("+ globals[fallback] + "," + fallback +"))";
+					}
+					else {
+						customProps[ j ] += ":  var("+ itemVar + "," + fallback +")";
+					}
+					
 					logger.verbose( "    - Iconoclash added a style to the "+ elemType + ": " + customProps[ j ]);
 
-					CSS.push( cssVar + ":" + (this.attribs[prop] || "initial") );
-					logger.verbose( "    - Iconoclash set the default of the "+ cssVar +" CSS property to '"+ (this.attribs[prop] || "initial") +"'" );
+					//CSS.push( cssVar + ":" + (this.attribs[prop] || "initial") );
 				}
 				this.attribs.style = customProps.join(";");
 			}
 		});
 
 		fs.writeFileSync(this.output + config.iconsvg, sprites);
-		fs.writeFileSync(this.output + config.iconcss, config.banner + "\n:root {\n" + CSS.join(";\n") + "\n}" );
+		fs.writeFileSync(this.output + config.iconcss, config.banner + "\n:root {\n" + CSS.join(";\n") + "\n}\n\n" + classes.join("\n") );
 
 		logger.ok( "Iconoclash processed " + this.files.length + " files." );
 

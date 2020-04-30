@@ -1,8 +1,8 @@
 /* Iconoclash: CSS properties exposed from SVGs */
 :root {
---vespa-path1-fill:#E2574C;
---vespa-path2-transform:initial;
---vespa-path2-color:initial;
---vespa-path2-background-color:initial;
---vespa-path2-fill:#AAAAAA
+
 }
+
+.icon-lamp{ background-image: url('icons.svg#lamp') }
+.icon-skate{ background-image: url('icons.svg#skate') }
+.icon-vespa{ background-image: url('icons.svg#vespa') }
