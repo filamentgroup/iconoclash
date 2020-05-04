@@ -2,7 +2,7 @@
 
 A workflow for configurable external svg sets.
 
-Demo output: https://filamentgroup.github.io/iconoclash/ 
+Demo output: https://filamentgroup.github.io/iconoclash/demo/output/icons.html 
 
 
 ## How it works:
