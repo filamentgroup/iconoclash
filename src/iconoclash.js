@@ -11,9 +11,11 @@
 	var defaults = {
 		iconcss: 'icons.css',
 		iconsvg: 'icons.svg',
+		icondata: 'icons.json',
 		previewhtml: "icons.html",
 		idKey: "iconoclash",
 		banner: "/* Iconoclash: CSS properties exposed from SVGs */",
+		svgstyles: "svg > g {display:none;} svg > g:target{display:inline}",
 		verbose: false,
 		logger: {
 			verbose: console.info,
@@ -57,61 +59,103 @@
 		var logger = this.logger;
 		var that = this;
 		logger.ok( "Iconoclash is processing " + this.files.length + " svg files." );
-
+		var data = {};
 		var CSS = [  ];
 		var classes = [];
-		var HTML = [];
+		
 		var globals = {};
 		var sprites = svgstore();
+
+		// note: adding styles here in defs. This is necessary to show/hide the right symbol when svg is referenced in a bg image
+		// also note: this empty string arg is required and it injects an empty symbol. Harmless but not enough to clean up rn.
+		sprites.add("", "<defs><style>" + config.svgstyles + "</style></defs>");
 
 		this.files.forEach(function(file) {
 			let stat= fs.statSync(file);
 			if ( stat.isFile() && file.indexOf(".svg") > -1 ) {  
 				let id = that._symbolIDFromFile(file);
-				sprites.add(id, fs.readFileSync(file, 'utf8'));
-				classes.push( ".icon-" + id + "{ background-image: url('"+ config.iconsvg +"#"+ id +"') }" )
+				
+				data[ id ] = {
+					srcFile: file,
+					srcFileContent: fs.readFileSync(file, 'utf8'),
+					svgPath: config.iconsvg +"#"+ id,
+					//temp width height etc here
+					cssBG: "." + config.idKey + "-" + id + "{ width: 100px; height: 100px;  background: url('"+ config.iconsvg +"#"+ id +"') no-repeat; background-size: contain; }",
+					elems: []
+				};
+
+				// add svg to the sprite
+				sprites.add(id, data[ id ].srcFileContent );
+				classes.push( data[ id ].cssBG  );
 			}
 		}); 
 
-		var k = 0;
-		sprites.element("[id*='" + config.idKey + "']").each(function(i){
+		// make symbols into groups
+		sprites.element('symbol[id]').each(function(){
+			this.name = "g";
+		});
 
+
+		var k = 0;
+		// loop the svg elements that have customizations to expose, across all 
+		sprites.element("[id*='" + config.idKey + "']").each(function(i){
 			var parentName = this.parentNode.attribs.id;
-			var id = this.attribs.id;			
+			var width = this.parentNode.attribs.width;
+			var height = this.parentNode.attribs.width;
+			var id = this.attribs.id;		
 			var elemType = this.name;
 			var afterKey = id.split( config.idKey )[1];
+			var elemData = {};
+			elemData.width = width;
+			elemData.height = height;
+			elemData.elemType = elemType;
 			// assume any space separated values after the key are css props to expose
 			var customProps = afterKey.match(/([^ _\d]+)/g);
 			if( customProps.length ){
 				logger.verbose( "Iconoclash found an SVG "+ elemType +" with CSS properties to expose: " + customProps.join(", "));
+				elemData.cssProps = {};
 
 				for( var j = 0; j < customProps.length; j++ ){
 					var prop = customProps[ j ];
 					var itemVar = "--" + parentName + "-" + elemType + (i+1) + "-" + prop;
 					var fallback = this.attribs[prop] || "initial";
+					var cssText = "";
+					
 
 					if( !globals[fallback] && fallback !== "initial" ) {
 						globals[fallback] = "--iconglobal-" + k++;
+						
 						CSS.push( globals[fallback] + ": initial" );
 					}
 
 					if( globals[fallback] ){
-						customProps[ j ] += ": var(" + itemVar + ", var("+ globals[fallback] + "," + fallback +"))";
+						cssText = prop + ": var(" + itemVar + ", var("+ globals[fallback] + "," + fallback +"))";
 					}
 					else {
-						customProps[ j ] += ":  var("+ itemVar + "," + fallback +")";
+						cssText = prop + ":  var("+ itemVar + "," + fallback +")";
 					}
 					CSS.push( itemVar + ": initial" );
+					customProps[ j ] = cssText;
 					
 					logger.verbose( "    - Iconoclash added a style to the "+ elemType + ": " + customProps[ j ]);
 
-					
+					elemData.cssProps[ prop ] = {
+						"localCSSVar": itemVar,
+						"globalCSSvar": globals[fallback],
+						"fallbackValue": fallback,
+						"cssText": cssText
+					};
 				}
-				this.attribs.style = customProps.join(";");
+				
+				elemData.cssText = customProps.join(";");
+				data[ parentName ].elems.push( elemData );
+				this.attribs.style = elemData.cssText;
 			}
 		});
 
+
 		fs.writeFileSync(this.output + config.iconsvg, sprites);
+		fs.writeFileSync(this.output + config.icondata, JSON.stringify( data ) );
 		fs.writeFileSync(this.output + config.iconcss, config.banner + "\n:root {\n" + CSS.join(";\n") + "\n}\n\n" + classes.join("\n") );
 
 		logger.ok( "Iconoclash processed " + this.files.length + " files." );

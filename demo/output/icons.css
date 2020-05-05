@@ -3,9 +3,11 @@
 --iconglobal-0: initial;
 --lamp-path1-fill: initial;
 --skate-path2-fill: initial;
---vespa-path3-fill: initial
+--vespa-path3-fill: initial;
+--vespa-path3-transform: initial;
+--vespa-path3-animation: initial
 }
 
-.icon-lamp{ background-image: url('icons.svg#lamp') }
-.icon-skate{ background-image: url('icons.svg#skate') }
-.icon-vespa{ background-image: url('icons.svg#vespa') }
+.iconoclash-lamp{ width: 100px; height: 100px;  background: url('icons.svg#lamp') no-repeat; background-size: contain; }
+.iconoclash-skate{ width: 100px; height: 100px;  background: url('icons.svg#skate') no-repeat; background-size: contain; }
+.iconoclash-vespa{ width: 100px; height: 100px;  background: url('icons.svg#vespa') no-repeat; background-size: contain; }

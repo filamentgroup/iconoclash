@@ -1,18 +1,31 @@
-<h1 class="icon-vespa">Deeply customize an external SVG's colors.</h1>
+<h1>Iconoclash Preview Output</h1>
 
 <link rel="stylesheet" href="icons.css">
 
-<p>The <a href="icons.svg">external icons.svg file</a> has paths that use overrideable CSS custom property fill styles. This allows for deeper customization than setting CSS rules that would otherwise apply globally to the use element.</p>
+<p>Iconoclash generated an <a href="icons.svg">external icons.svg file</a> from a folder of SVGs. You can reference and customize them as follows:</p>
 
-<svg width="100" height="100">
-    <use xlink:href="icons.svg#vespa"></use>
- </svg>
 
- <svg width="100" height="100">
-    <use xlink:href="icons.svg#lamp"></use>
-</svg>
+<h2>Vespa</h2>
+<p>HTML embed:</p>
+<pre><code>&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;use href=&quot;icons.svg#vespa&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+<svg width="100" height="100"><use href="icons.svg#vespa"></use></svg>
+<p>CSS background embed:</p>
+<pre><code>&lt;div class=&quot;iconoclash-vespa&quot;&gt;&lt;/div&gt;</code></pre>
+<div class="iconoclash-vespa"></div>
 
-<svg width="100" height="100">
-    <use xlink:href="icons.svg#skate"></use>
-</svg>
 
+<h2>Lamp</h2>
+<p>HTML embed:</p>
+<pre><code>&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;use href=&quot;icons.svg#lamp&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+<svg width="100" height="100"><use href="icons.svg#lamp"></use></svg>
+<p>CSS background embed:</p>
+<pre><code>&lt;div class=&quot;iconoclash-lamp&quot;&gt;&lt;/div&gt;</code></pre>
+<div class="iconoclash-lamp"></div>
+
+<h2>Skate</h2>
+<p>HTML embed:</p>
+<pre><code>&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;use href=&quot;icons.svg#skate&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+<svg width="100" height="100"><use href="icons.svg#skate"></use></svg>
+<p>CSS background embed:</p>
+<pre><code>&lt;div class=&quot;iconoclash-skate&quot;&gt;&lt;/div&gt;</code></pre>
+<div class="iconoclash-skate"></div>
