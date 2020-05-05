@@ -1,19 +1,27 @@
-<h1>Iconoclash!! {{testing}}</h1>
 
 <link rel="stylesheet" href="icons.css">
 <style>
-    body {
-        margin: 50px auto;
+    .contain {
+        margin: 30px;
         width: 95%;
-        max-width: 800px;
+        max-width: 500px;
         font-family: sans-serif;
+    }
+    @media (min-width: 800px) {
+        .contain {
+            width: 40%;
+        }
     }
     pre,
     style.overrides {
         width: 100%;
         background: #eee;
         padding: 1em;
-        color: #111;;
+        color: #111;
+        
+    }
+    pre {
+        white-space: normal;
     }
     h2 {
         margin: 2em 0 0;
@@ -25,8 +33,20 @@
         font-size: 1em;
         font-family: monospace;
         cursor: text;
+        overflow: auto;
+    }
+    @media (min-width: 800px) {
+        .editpanel {
+            position: fixed;
+            right: 30px;
+            top: 0;
+            width: 40%;
+        }   
     }
 </style>
+
+<div class="contain">
+<h1>Iconoclash!! {{testing}}</h1>
 
 <p>Iconoclash generated an <a href="icons.svg">icons sprite</a> from the following SVG files:</p>
 
@@ -36,44 +56,55 @@
 {{/icons}}
 </ul>
 
-<p>In the process, Iconoclash created custom CSS properties for all SVG elements that had an ID attribute specifying CSS properties to expose. For example, consider this before and after:</p>
+<!-- <p>In the process, Iconoclash created custom CSS properties for all SVG elements that had an ID attribute specifying CSS properties to expose. For example, consider this before and after:</p>
 <pre><code>
 Input: &lt;g fill=&quot;#E2574C&quot; id=&quot;iconoclash fill&quot;&gt;
 Output:  &lt;g fill=&quot;#E2574C&quot; style=&quot;fill: var(--vespa-g1-fill)&quot;&gt;
 </code></pre>
-    
-    
-    <p>Here's how you can use them in your page!</p>
+     -->
+<p>Here's how you can use them in your page!</p>
 
 
 
 {{#icons}}
 <h2 id="{{id}}">{{id}}</h2>
-<h3>HTML embed:</h3>
 <p>You can add the {{id}} icon into an HTML file like this.</p>
-<pre><code>&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;use href=&quot;icons.svg#{{id}}&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
 <svg width="100" height="100"><use href="{{target}}"></use></svg>
-<h3>Configurable CSS Properties</h3>
-<p>These CSS properties were exposed from the SVG for configuration. Try editing them!</p>
-<style class="overrides" contenteditable>
-:root {
-    /* {{id}}-specific properties */
-    {{#elems}}
-    {{#localProps}}
-    {{rule}}
-    {{/localProps}}
-    {{/elems}}
 
-    /* Shared properties */
-    {{#elems}}
-    {{#sharedProps}}
-    {{rule}}
-    {{/sharedProps}}
-    {{/elems}}
-}
-</style>
+<pre><code>&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;use href=&quot;icons.svg#{{id}}&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+<!-- 
 <h3>CSS background embed:</h3>
 <p>If you only want the icon as a background image, add a class of <code>iconoclash-{{id}}</code> to any element:</p>
 <pre><code>&lt;div class=&quot;iconoclash-{{id}}&quot;&gt;&lt;/div&gt;</code></pre>
-<div class="iconoclash-{{id}}"></div>
+<div class="iconoclash-{{id}}"></div> -->
 {{/icons}}
+</div>
+<div class="editpanel">
+<h2>Customizing your icons</h2>
+<p>These CSS properties were exposed from the SVG for configuration. Try editing them!</p>
+
+<style class="overrides" contenteditable>
+:root {
+/* Shared global properties */
+{{#icons}}
+{{#elems}}
+{{#sharedProps}}
+{{rule}}
+{{/sharedProps}}
+{{/elems}}
+{{/icons}}
+
+
+/* Icon-specific properties */
+{{#icons}}
+{{#elems}}
+{{#localProps}}
+{{rule}}
+{{/localProps}}
+{{/elems}}
+
+
+{{/icons}}
+}
+</style>
+</div>

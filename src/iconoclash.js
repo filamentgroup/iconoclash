@@ -141,6 +141,7 @@
 
 					if( globals[fallback] ){
 						cssText = prop + ": var(" + itemVar + ", var("+ globals[fallback] + "," + fallback +"))";
+						
 					}
 					else {
 						cssText = prop + ":  var("+ itemVar + "," + fallback +")";
@@ -160,7 +161,7 @@
 					};
 				}
 				
-				elemData.cssText = customProps.join("\n");
+				elemData.cssText = customProps.join(";");
 				data.find(x => x.id === parentName).elems.push( elemData );
 				this.attribs.style = elemData.cssText;
 			}

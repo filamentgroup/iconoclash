@@ -1,19 +1,27 @@
-<h1>Iconoclash!! </h1>
 
 <link rel="stylesheet" href="icons.css">
 <style>
-    body {
-        margin: 50px auto;
+    .contain {
+        margin: 30px;
         width: 95%;
-        max-width: 800px;
+        max-width: 500px;
         font-family: sans-serif;
+    }
+    @media (min-width: 800px) {
+        .contain {
+            width: 40%;
+        }
     }
     pre,
     style.overrides {
         width: 100%;
         background: #eee;
         padding: 1em;
-        color: #111;;
+        color: #111;
+        
+    }
+    pre {
+        white-space: normal;
     }
     h2 {
         margin: 2em 0 0;
@@ -25,85 +33,92 @@
         font-size: 1em;
         font-family: monospace;
         cursor: text;
+        overflow: auto;
+    }
+    @media (min-width: 800px) {
+        .editpanel {
+            position: fixed;
+            right: 30px;
+            top: 0;
+            width: 40%;
+        }   
     }
 </style>
+
+<div class="contain">
+<h1>Iconoclash!! </h1>
 
 <p>Iconoclash generated an <a href="icons.svg">icons sprite</a> from the following SVG files:</p>
 
 <ul>
-<li><a href="#lamp">lamp.svg</a></li>
 <li><a href="#skate">skate.svg</a></li>
 <li><a href="#vespa">vespa.svg</a></li>
+<li><a href="#lamp">lamp.svg</a></li>
 </ul>
 
-<p>In the process, Iconoclash created custom CSS properties for all SVG elements that had an ID attribute specifying CSS properties to expose. For example, consider this before and after:</p>
+<!-- <p>In the process, Iconoclash created custom CSS properties for all SVG elements that had an ID attribute specifying CSS properties to expose. For example, consider this before and after:</p>
 <pre><code>
 Input: &lt;g fill=&quot;#E2574C&quot; id=&quot;iconoclash fill&quot;&gt;
 Output:  &lt;g fill=&quot;#E2574C&quot; style=&quot;fill: var(--vespa-g1-fill)&quot;&gt;
 </code></pre>
-    
-    
-    <p>Here's how you can use them in your page!</p>
+     -->
+<p>Here's how you can use them in your page!</p>
 
 
 
-<h2 id="lamp">lamp</h2>
-<h3>HTML embed:</h3>
-<p>You can add the lamp icon into an HTML file like this.</p>
-<pre><code>&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;use href=&quot;icons.svg#lamp&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
-<svg width="100" height="100"><use href="icons.svg#lamp"></use></svg>
-<h3>Configurable CSS Properties</h3>
-<p>These CSS properties were exposed from the SVG for configuration. Try editing them!</p>
-<style class="overrides" contenteditable>
-:root {
-    /* lamp-specific properties */
-    --lamp-path1-fill: initial; /* default: #3DB39E*/
-
-    /* Shared properties */
-    --iconoclash-shared-0: initial; /* default: #3DB39E*/
-}
-</style>
-<h3>CSS background embed:</h3>
-<p>If you only want the icon as a background image, add a class of <code>iconoclash-lamp</code> to any element:</p>
-<pre><code>&lt;div class=&quot;iconoclash-lamp&quot;&gt;&lt;/div&gt;</code></pre>
-<div class="iconoclash-lamp"></div>
 <h2 id="skate">skate</h2>
-<h3>HTML embed:</h3>
 <p>You can add the skate icon into an HTML file like this.</p>
-<pre><code>&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;use href=&quot;icons.svg#skate&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
 <svg width="100" height="100"><use href="icons.svg#skate"></use></svg>
-<h3>Configurable CSS Properties</h3>
-<p>These CSS properties were exposed from the SVG for configuration. Try editing them!</p>
-<style class="overrides" contenteditable>
-:root {
-    /* skate-specific properties */
-    --skate-path2-fill: initial; /* default: #3DB39E*/
 
-    /* Shared properties */
-}
-</style>
+<pre><code>&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;use href=&quot;icons.svg#skate&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+<!-- 
 <h3>CSS background embed:</h3>
 <p>If you only want the icon as a background image, add a class of <code>iconoclash-skate</code> to any element:</p>
 <pre><code>&lt;div class=&quot;iconoclash-skate&quot;&gt;&lt;/div&gt;</code></pre>
-<div class="iconoclash-skate"></div>
+<div class="iconoclash-skate"></div> -->
 <h2 id="vespa">vespa</h2>
-<h3>HTML embed:</h3>
 <p>You can add the vespa icon into an HTML file like this.</p>
-<pre><code>&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;use href=&quot;icons.svg#vespa&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
 <svg width="100" height="100"><use href="icons.svg#vespa"></use></svg>
-<h3>Configurable CSS Properties</h3>
-<p>These CSS properties were exposed from the SVG for configuration. Try editing them!</p>
-<style class="overrides" contenteditable>
-:root {
-    /* vespa-specific properties */
-    --vespa-path3-fill: initial; /* default: #3DB39E*/
-    --vespa-path3-transform: initial; /* default: initial*/
-    --vespa-path3-animation: initial; /* default: initial*/
 
-    /* Shared properties */
-}
-</style>
+<pre><code>&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;use href=&quot;icons.svg#vespa&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+<!-- 
 <h3>CSS background embed:</h3>
 <p>If you only want the icon as a background image, add a class of <code>iconoclash-vespa</code> to any element:</p>
 <pre><code>&lt;div class=&quot;iconoclash-vespa&quot;&gt;&lt;/div&gt;</code></pre>
-<div class="iconoclash-vespa"></div>
+<div class="iconoclash-vespa"></div> -->
+<h2 id="lamp">lamp</h2>
+<p>You can add the lamp icon into an HTML file like this.</p>
+<svg width="100" height="100"><use href="icons.svg#lamp"></use></svg>
+
+<pre><code>&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;use href=&quot;icons.svg#lamp&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+<!-- 
+<h3>CSS background embed:</h3>
+<p>If you only want the icon as a background image, add a class of <code>iconoclash-lamp</code> to any element:</p>
+<pre><code>&lt;div class=&quot;iconoclash-lamp&quot;&gt;&lt;/div&gt;</code></pre>
+<div class="iconoclash-lamp"></div> -->
+</div>
+<div class="editpanel">
+<h2>Customizing your icons</h2>
+<p>These CSS properties were exposed from the SVG for configuration. Try editing them!</p>
+
+<style class="overrides" contenteditable>
+:root {
+/* Shared global properties */
+--iconoclash-shared-0: initial; /* default: #3DB39E*/
+
+
+/* Icon-specific properties */
+--skate-path1-fill: initial; /* default: #3DB39E*/
+
+
+--vespa-path2-fill: initial; /* default: #3DB39E*/
+--vespa-path2-transform: initial; /* default: initial*/
+--vespa-path2-animation: initial; /* default: initial*/
+
+
+--lamp-path3-fill: initial; /* default: #3DB39E*/
+
+
+}
+</style>
+</div>
