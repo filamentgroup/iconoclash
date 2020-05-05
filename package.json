@@ -1,12 +1,13 @@
 {
-  "name": "fg-iconbelieveitsnotharder",
+  "name": "fg-iconoclash",
   "version": "0.1.0",
   "description": "Easy external SVG icons",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/filamentgroup/iconbelieveitsnotharder.git"
+    "url": "https://github.com/filamentgroup/iconoclash.git"
   },
+  "main": "src/iconoclash.js",
   "keywords": [
     "icons",
     "svg"
@@ -14,12 +15,13 @@
   "author": "Filament Group <hello@filamentgroup.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/filamentgroup/iconbelieveitsnotharder/issues"
+    "url": "https://github.com/filamentgroup/iconoclash/issues"
   },
-  "homepage": "https://github.com/filamentgroup/iconbelieveitsnotharder",
+  "homepage": "https://github.com/filamentgroup/iconoclash",
   "devDependencies": {
     "svgstore": "3.0.0-2",
     "lodash": "^4.17.11",
-    "fs-extra": "^7.0.1"
+    "fs-extra": "^7.0.1",
+    "mustache": "^4.0.1"
   }
 }

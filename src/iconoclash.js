@@ -7,16 +7,18 @@
 	var svgstore = require('svgstore');
 	var fs = require( "fs-extra" );
 	var _ = require('lodash');
+	var Mustache = require('mustache');
 
 	var defaults = {
 		iconcss: 'icons.css',
 		iconsvg: 'icons.svg',
 		icondata: 'icons.json',
-		previewhtml: "icons.html",
+		iconhtml: "icons.html",
+		htmlinput: "../src/preview.html",
 		idKey: "iconoclash",
 		banner: "/* Iconoclash: CSS properties exposed from SVGs */",
 		svgstyles: "svg > g {display:none;} svg > g:target{display:inline}",
-		verbose: false,
+		verbose: true,
 		logger: {
 			verbose: console.info,
 			fatal: console.error,
@@ -44,7 +46,6 @@
 
 		this.files = files;
 		this.output = output;
-
 		this.options = _.defaultsDeep( config, defaults );
 		this.logger = this.options.verbose ? this.options.logger : disabledLogger;
 		
@@ -54,12 +55,17 @@
 		return file.match( /([^\/]+)\.svg/, "" )[1].replace( /\#|\>|\]|\]| |\./gmi, "-" );
 	};
 
+	Iconoclash.prototype._fileName = function(file){
+		return file.match( /([^\/]+\.svg)/, "" )[1];
+	};
+
 	Iconoclash.prototype.process = function(cb){
 		var config = this.options;
 		var logger = this.logger;
 		var that = this;
 		logger.ok( "Iconoclash is processing " + this.files.length + " svg files." );
-		var data = {};
+		var dataContainer = {};
+		var data = dataContainer.icons = [];
 		var CSS = [  ];
 		var classes = [];
 		
@@ -74,19 +80,21 @@
 			let stat= fs.statSync(file);
 			if ( stat.isFile() && file.indexOf(".svg") > -1 ) {  
 				let id = that._symbolIDFromFile(file);
-				
-				data[ id ] = {
-					srcFile: file,
-					srcFileContent: fs.readFileSync(file, 'utf8'),
-					svgPath: config.iconsvg +"#"+ id,
+				var svgdata = {
+					id: id,
+					file: that._fileName(file),
+					source: fs.readFileSync(file, 'utf8'),
+					target: config.iconsvg +"#"+ id,
 					//temp width height etc here
 					cssBG: "." + config.idKey + "-" + id + "{ width: 100px; height: 100px;  background: url('"+ config.iconsvg +"#"+ id +"') no-repeat; background-size: contain; }",
 					elems: []
 				};
 
 				// add svg to the sprite
-				sprites.add(id, data[ id ].srcFileContent );
-				classes.push( data[ id ].cssBG  );
+				sprites.add(id, svgdata.source );
+				classes.push( svgdata.cssBG  );
+				data.push(svgdata);
+
 			}
 		}); 
 
@@ -114,6 +122,8 @@
 			if( customProps.length ){
 				logger.verbose( "Iconoclash found an SVG "+ elemType +" with CSS properties to expose: " + customProps.join(", "));
 				elemData.cssProps = {};
+				elemData.sharedProps = [];
+				elemData.localProps = [];
 
 				for( var j = 0; j < customProps.length; j++ ){
 					var prop = customProps[ j ];
@@ -123,9 +133,10 @@
 					
 
 					if( !globals[fallback] && fallback !== "initial" ) {
-						globals[fallback] = "--iconglobal-" + k++;
-						
-						CSS.push( globals[fallback] + ": initial" );
+						globals[fallback] = "--iconoclash-shared-" + k++;
+						var sharedPropRule = globals[fallback] + ": initial; /* default: " + fallback + "*/";
+						CSS.push( sharedPropRule );
+						elemData.sharedProps.push( { "rule": sharedPropRule } );
 					}
 
 					if( globals[fallback] ){
@@ -134,29 +145,36 @@
 					else {
 						cssText = prop + ":  var("+ itemVar + "," + fallback +")";
 					}
-					CSS.push( itemVar + ": initial" );
+
+					var localPropRule = itemVar + ": initial; /* default: " + fallback + "*/";
+					CSS.push( localPropRule );
+					elemData.localProps.push( { "rule": localPropRule } );
 					customProps[ j ] = cssText;
 					
 					logger.verbose( "    - Iconoclash added a style to the "+ elemType + ": " + customProps[ j ]);
-
+					
 					elemData.cssProps[ prop ] = {
 						"localCSSVar": itemVar,
 						"globalCSSvar": globals[fallback],
-						"fallbackValue": fallback,
-						"cssText": cssText
+						"fallbackValue": fallback
 					};
 				}
 				
-				elemData.cssText = customProps.join(";");
-				data[ parentName ].elems.push( elemData );
+				elemData.cssText = customProps.join("\n");
+				data.find(x => x.id === parentName).elems.push( elemData );
 				this.attribs.style = elemData.cssText;
 			}
 		});
 
 
 		fs.writeFileSync(this.output + config.iconsvg, sprites);
-		fs.writeFileSync(this.output + config.icondata, JSON.stringify( data ) );
+		fs.writeFileSync(this.output + config.icondata, JSON.stringify( dataContainer ) );
 		fs.writeFileSync(this.output + config.iconcss, config.banner + "\n:root {\n" + CSS.join(";\n") + "\n}\n\n" + classes.join("\n") );
+
+		var previewHTMLInput = fs.readFileSync(config.htmlinput, 'utf8');
+		Mustache.escape = function(text) {return text;}
+		var preview = Mustache.render(previewHTMLInput, dataContainer );
+		fs.writeFileSync(this.output + config.iconhtml, preview );
 
 		logger.ok( "Iconoclash processed " + this.files.length + " files." );
 
