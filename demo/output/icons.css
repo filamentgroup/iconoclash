@@ -3,11 +3,12 @@
 --iconoclash-shared-0: initial; /* default: #3DB39E*/;
 --skate-path1-fill: initial; /* default: #3DB39E*/;
 --vespa-path2-fill: initial; /* default: #3DB39E*/;
---vespa-path2-transform: initial; /* default: initial*/;
---vespa-path2-animation: initial; /* default: initial*/;
---lamp-path3-fill: initial; /* default: #3DB39E*/
+--conveyor-path3-fill: initial; /* default: #3DB39E*/;
+--conveyor-g4-animation: initial; /* default: initial*/;
+--lamp-path5-fill: initial; /* default: #3DB39E*/
 }
 
 .iconoclash-skate{ width: 100px; height: 100px;  background: url('icons.svg#skate') no-repeat; background-size: contain; }
 .iconoclash-vespa{ width: 100px; height: 100px;  background: url('icons.svg#vespa') no-repeat; background-size: contain; }
+.iconoclash-conveyor{ width: 100px; height: 100px;  background: url('icons.svg#conveyor') no-repeat; background-size: contain; }
 .iconoclash-lamp{ width: 100px; height: 100px;  background: url('icons.svg#lamp') no-repeat; background-size: contain; }

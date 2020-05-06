@@ -21,7 +21,7 @@
         
     }
     pre {
-        white-space: normal;
+        white-space: pre;
     }
     h2 {
         margin: 2em 0 0;
@@ -34,6 +34,7 @@
         font-family: monospace;
         cursor: text;
         overflow: auto;
+        max-height: 50vh;
     }
     @media (min-width: 800px) {
         .editpanel {
@@ -41,6 +42,7 @@
             right: 30px;
             top: 0;
             width: 40%;
+            max-height: 90vh;
         }   
     }
 </style>
@@ -69,15 +71,48 @@ Output:  &lt;g fill=&quot;#E2574C&quot; style=&quot;fill: var(--vespa-g1-fill)&q
 {{#icons}}
 <h2 id="{{id}}">{{id}}</h2>
 <p>You can add the {{id}} icon into an HTML file like this.</p>
-<svg width="100" height="100"><use href="{{target}}"></use></svg>
+<svg><use href="{{target}}"></use></svg>
 
-<pre><code>&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;use href=&quot;icons.svg#{{id}}&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+<pre><code>&lt;svg&gt;&lt;use href=&quot;icons.svg#{{id}}&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
 
 <p>You can also add the icon as a background image by adding a class of <code>iconoclash-{{id}}</code> to any element. CSS customizations won't apply to backgrounds, however.</p>
 <pre><code>&lt;div class=&quot;iconoclash-{{id}}&quot;&gt;&lt;/div&gt;</code></pre>
 <div class="iconoclash-{{id}}"></div> 
 {{/icons}}
+
+
+<h2>Sample animation!</h2>
+<p>the conveyor has an animation property exposed on one of its groups. It's set to <code>initial</code> by default, but if you set it to a keyframe animation, it'll animate.</p>
+
+<svg class="animateddemo"><use href="icons.svg#conveyor"></use></svg>
+<style>
+@keyframes conveyor {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(-30px);}
+}
+.animateddemo { --conveyor-g4-animation: conveyor 3s infinite; }
+</style>
+
+<pre><code>
+&lt;svg class="animateddemo"&gt;
+  &lt;use href=&quot;icons.svg#conveyor&quot;&gt;&lt;/use&gt;
+&lt;/svg&gt;
+
+&lt;style&gt;
+@keyframes conveyor {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(-30px);}
+}
+.animateddemo {
+  --conveyor-g4-animation: conveyor 3s infinite;;
+}
+&lt;/style&gt;
+</code></pre>
+
 </div>
+
+
+
 <div class="editpanel">
 <h2>Customizing your icons</h2>
 <p>These CSS properties were exposed from the SVG for configuration. Try editing them!</p>
@@ -106,4 +141,7 @@ Output:  &lt;g fill=&quot;#E2574C&quot; style=&quot;fill: var(--vespa-g1-fill)&q
 {{/icons}}
 }
 </style>
+
+
 </div>
+
