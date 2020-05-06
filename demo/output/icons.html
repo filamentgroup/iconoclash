@@ -21,7 +21,7 @@
         
     }
     pre {
-        white-space: pre;
+        white-space: pre-wrap;
     }
     h2 {
         margin: 2em 0 0;
@@ -117,6 +117,7 @@ Output:  &lt;g fill=&quot;#E2574C&quot; style=&quot;fill: var(--vespa-g1-fill)&q
   100% { transform: translateX(-30px);}
 }
 .animateddemo { --conveyor-g4-animation: conveyor 3s infinite; }
+svg > g#conveyor { display: inline; }
 </style>
 
 <pre><code>
@@ -133,6 +134,17 @@ Output:  &lt;g fill=&quot;#E2574C&quot; style=&quot;fill: var(--vespa-g1-fill)&q
   --conveyor-g4-animation: conveyor 3s infinite;;
 }
 &lt;/style&gt;
+</code></pre>
+
+<p><strong>Note:</strong> animation with use/def doesn't seem to work in Chrome/Edge. We can make it work by embedding the svg though:</p>
+<div class="animateddemo">
+<object data="icons.svg#conveyor" onload="this.before((this.contentDocument.body || this.contentDocument).children[0]);this.remove()"></object>
+</div>
+
+<pre><code>
+&lt;div class=&quot;animateddemo&quot;&gt;
+&lt;object data=&quot;icons.svg#conveyor&quot; onload=&quot;this.before((this.contentDocument.body || this.contentDocument).children[0]);this.remove()&quot;&gt;&lt;/object&gt;
+&lt;/div&gt;
 </code></pre>
 
 </div>
