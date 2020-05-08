@@ -1,11 +1,45 @@
 /* Iconoclash: CSS properties exposed from SVGs */
 :root {
---iconoclash-shared-0: initial; /* default: #3DB39E*/;
---conveyor-path1-fill: initial; /* default: #3DB39E*/;
---conveyor-g2-animation: initial; /* default: initial*/;
---lamp-path3-fill: initial; /* default: #3DB39E*/;
---skate-path4-fill: initial; /* default: #3DB39E*/;
---vespa-path5-fill: initial; /* default: #3DB39E*/
+--iconoclash-shared-0: #000000;;
+--iconoclash-shared-1: #3DB39E;;
+--iconoclash-shared-2: #324D5B;;
+--iconoclash-shared-3: #475F6C;;
+--iconoclash-shared-4: #3E5765;;
+--iconoclash-shared-5: none;;
+--iconoclash-shared-6: #FAFAFA;;
+--iconoclash-shared-7: #EDEDED;;
+--iconoclash-shared-8: #BEBEBE;;
+--iconoclash-shared-9: #7D8D95;;
+--iconoclash-shared-10: #EFC75E;;
+--iconoclash-shared-11: #283E49;;
+--iconoclash-shared-12: #394C56;;
+--iconoclash-shared-13: #70838D;;
+--iconoclash-shared-14: #405561;;
+--iconoclash-shared-15: #CBA950;;
+--iconoclash-shared-16: #CACACA;;
+--iconoclash-shared-17: #5B717C;;
+--iconoclash-shared-18: #37A18E;;
+--iconoclash-shared-19: #F4F0D3;;
+--iconoclash-shared-20: #E6E2C7;;
+--iconoclash-shared-21: #E3BD59;;
+--iconoclash-shared-22: #1C2C33;;
+--iconoclash-shared-23: #CDCDCD;;
+--iconoclash-shared-24: #949494;;
+--iconoclash-shared-25: #AEAEAE;;
+--iconoclash-shared-26: #A6A6A6;;
+--iconoclash-shared-27: #9C9C9C;;
+--iconoclash-shared-28: #DFDFDF;;
+--iconoclash-shared-29: #C3C3C3;;
+--iconoclash-shared-30: #3A96B4;;
+--iconoclash-shared-31: #3589A4;;
+--iconoclash-shared-32: #DBD8BD;;
+--iconoclash-shared-33: #B5BCC0;;
+--iconoclash-shared-34: #E2574C;;
+--iconoclash-shared-35: #EE7269;;
+--iconoclash-shared-36: #CB4E44;;
+--iconoclash-shared-37: #D1645C;;
+--iconoclash-shared-38: #2D4552;;
+--iconoclash-shared-39: #2B424D;
 }
 
 .iconoclash-001-home{ width: 100px; height: 100px;  background: url('icons.svg#001-home') no-repeat; background-size: contain; }
