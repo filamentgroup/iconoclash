@@ -1,159 +1,209 @@
 
-<link rel="stylesheet" href="icons.css">
-<style>
-    .contain {
-        margin: 30px;
-        width: 95%;
-        max-width: 500px;
-        font-family: sans-serif;
-    }
-    @media (min-width: 800px) {
-        .contain {
-            width: 40%;
-        }
-    }
-    pre,
-    style.overrides {
-        width: 100%;
-        background: #eee;
-        padding: 1em;
-        color: #111;
-        
-    }
-    pre {
-        white-space: pre-wrap;
-    }
-    h2 {
-        margin: 2em 0 0;
-    }
-    style.overrides {
-        display: block;
-        margin: 1em 0 0;
-        white-space: pre;
-        font-size: 1em;
-        font-family: monospace;
-        cursor: text;
-        overflow: auto;
-        max-height: 50vh;
-    }
-    @media (min-width: 800px) {
-        .editpanel {
-            position: fixed;
-            right: 30px;
-            top: 0;
-            width: 40%;
-            max-height: 90vh;
-        }   
-    }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<title>IconoClash! Demo Page</title>
+		<meta name="Description" content="">
+		<meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="icons.css">
+        <style>
+            body {
+                font-family: sans-serif;
+            }
+            .logo {
+                font-weight: bold;
+                letter-spacing: -.08em;
+                text-align: center;
+            }
+            .logo span {
+                font-size: 1.2em;
+                transform: rotate(20deg) translateX(-.9em) translateY(0);
+                position: relative;
+                display: inline-block;
+                color: fuchsia;
+            }
+            .subhed {
+                text-align: center;
+                margin: 0;
+            }
+            pre,
+            style[contenteditable] {
+                display: block;
+                background: #eee;
+                padding: .5rem;
+                color: #111;
+                white-space: pre-wrap;
+                font-size: 1em;
+            }
+            style[contenteditable] {
+                font-size: .8em;
+            }
+            h2 {
+                margin: 2em 0 0;
+            }
+            ul.iconslist {
+                display: flex;
+                flex-flow: row wrap;
+                list-style: none;
+                margin: 2rem;
+                padding: 0;
+                justify-content: center;
+                align-items: center;
+            }
+            ul.iconslist > li {
+                flex: 1 0 150px;
+                box-sizing: border-box;
+                text-align: center;
+                padding:  0;
+                margin: 0;
+                
+            }
+            details {
+                position: relative;
+            }
+            details > summary {
+                cursor: pointer;
+                list-style: none;
+                display: flex;
+                flex-flow: column nowrap;
+                border: 2px dotted #eee;
+                position: relative;
+                padding: 1rem;
+                min-height: 150px;
+                margin: -1px;
+                transition: transform .3s ease-in-out;
+                background: #fff;
+            }
+            details:hover > summary,
+            details > summary:focus {
+                outline: none;
+                border-color: #ddd;
+                z-index: 50;
+                border-style: solid;
+                transform: scale(1.1);
+                --iconoclash-shared-0: teal;
+            }
+            details > summary:focus {
+                border-color: #aaa;
+                background: #eee;
+            }
+            summary p {
+                margin: 0;
+                font-size: .8em;
+                flex: 0 0 1em;
+            }
 
-<div class="contain">
-<h1>Iconoclash!! {{testing}}</h1>
+            details > summary::-webkit-details-marker {
+                display: none;
+            }
+            ul.iconslist svg {
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+                flex: 1 1 auto;
+                margin: auto;
+            }
+            .iconslist-customs {
+                position: absolute;
+                width: 250px;
+                left: 50%;
+                margin-left: -125px;
+                top: 85%;
+                background: #333;
+                color: #fff;
+                box-shadow: 0 0 4px #ddd;
+                z-index: 10;
+                text-align: left;
+                opacity: 0;
+                padding: 0 1rem 1rem;
+                box-sizing: border-box;
+                border-radius: 10px;
+                z-index: 100;
+            }
+            .iconslist-customs:before {
+                position: absolute;
+                content: "";
+                top: -9px;
+                width: 0;
+                height: 0;
+                border-bottom: 10px solid #333;
+                border-right: 10px solid transparent;
+                border-left: 10px solid transparent;
+                left: 50%;
+                margin-left: -10px;
+            }
+            details[open] summary ~ .iconslist-customs {
+                animation: fade .2s ease-in-out;
+                animation-fill-mode: forwards;
+                animation-delay: .4s;
+            }
 
-<p>Iconoclash generated an <a href="icons.svg">icons sprite</a> from the following SVG files:</p>
+             @keyframes fade {
+                0%    {opacity: 0; transform: translateY(10px); }
+                100%  {opacity: 1; transform: translateY(0);}
+            }
+            .iconslist-customs dt,
+            .iconslist-customs dd {
+                margin: 0;
+                padding: 0;
+                text-emphasis: left;
+                font-size: .9em;
+            }
+            .iconslist-customs dt {
+                text-transform: uppercase;
+                font-size: .7em;
+                margin: .6em 0 0;
+            }
+        </style>
+</head>
+<body>
 
-<ul>
-{{#icons}}
-<li><a href="#{{id}}">{{file}}</a></li>
-{{/icons}}
-</ul>
+        <div class="contain">
 
-<!-- <p>In the process, Iconoclash created custom CSS properties for all SVG elements that had an ID attribute specifying CSS properties to expose. For example, consider this before and after:</p>
-<pre><code>
-Input: &lt;g fill=&quot;#E2574C&quot; id=&quot;iconoclash fill&quot;&gt;
-Output:  &lt;g fill=&quot;#E2574C&quot; style=&quot;fill: var(--vespa-g1-fill)&quot;&gt;
-</code></pre>
-     -->
-<p>Here's how you can use them in your page!</p>
+            <h1 class="logo">Icono<span>clash!</span></h1>
 
+            <p class="subhed">Iconoclash generated an <a href="icons.svg">icons sprite</a> from the following SVG files:</p>
 
+            <ul class="iconslist">
+            {{#icons}}
+                <li>
+                    <details>
+                        <summary>
+                            <svg><use href="{{target}}"></use></svg>
+                            <p>{{id}}</p>
+                        </summary>
+                        <div class="iconslist-customs">
+                            <dl>
+                                <dt>SVG External</dt>
+                                <dd><pre><code>&lt;svg&gt;&lt;use href=&quot;{{target}}&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre></dd>
+                                <dt>CSS Background</dt>
+                                <dd><pre><code>&lt;div class=&quot;iconoclash-{{id}}&quot;&gt;&lt;/div&gt;</code></pre></dd>
+                                <dt>Customizations</dt>
+                                <dd><pre><code>{{#elems}}{{#localProps}}{{rule}}
+{{/localProps}}{{/elems}}</code></pre></dd>
+                                <dt>Shared customizations</dt>
+                                <dd><pre><code>{{#elems}}{{#sharedProps}}{{rule}}
+{{/sharedProps}}{{/elems}}</code></pre></dd>
+                            </dl>
+                        </div>
+                    </details>
+                </li>
+            {{/icons}}
+            </ul>
 
-{{#icons}}
-<h2 id="{{id}}">{{id}}</h2>
-<p>You can add the {{id}} icon into an HTML file like this.</p>
-<svg><use href="{{target}}"></use></svg>
+        </div>
+        <script>
+            var deets = document.querySelectorAll("details");
+            for(var i in deets){
+                deets[i].addEventListener("mouseenter", function(){
+                    this.setAttribute("open", true);
+                });
+                deets[i].addEventListener("mouseleave", function(){
+                    this.removeAttribute("open");
+                });
+            }
 
-<pre><code>&lt;svg&gt;&lt;use href=&quot;icons.svg#{{id}}&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
-
-<p>You can also add the icon as a background image by adding a class of <code>iconoclash-{{id}}</code> to any element. CSS customizations won't apply to backgrounds, however.</p>
-<pre><code>&lt;div class=&quot;iconoclash-{{id}}&quot;&gt;&lt;/div&gt;</code></pre>
-<div class="iconoclash-{{id}}"></div> 
-{{/icons}}
-
-
-<h2>Sample animation!</h2>
-<p>the conveyor has an animation property exposed on one of its groups. It's set to <code>initial</code> by default, but if you set it to a keyframe animation, it'll animate.</p>
-
-<svg class="animateddemo"><use href="icons.svg#conveyor"></use></svg>
-<style>
-@keyframes conveyor {
-  0% { transform: translateX(0px); }
-  100% { transform: translateX(-30px);}
-}
-.animateddemo { --conveyor-g4-animation: conveyor 3s infinite; }
-svg > g#conveyor { display: inline; }
-</style>
-
-<pre><code>
-&lt;svg class="animateddemo"&gt;
-  &lt;use href=&quot;icons.svg#conveyor&quot;&gt;&lt;/use&gt;
-&lt;/svg&gt;
-
-&lt;style&gt;
-@keyframes conveyor {
-  0% { transform: translateX(0px); }
-  100% { transform: translateX(-30px);}
-}
-.animateddemo {
-  --conveyor-g4-animation: conveyor 3s infinite;;
-}
-&lt;/style&gt;
-</code></pre>
-
-<p><strong>Note:</strong> animation with use/def doesn't seem to work in Chrome/Edge. We can make it work by embedding the svg though:</p>
-<div class="animateddemo">
-<object data="icons.svg#conveyor" onload="this.before((this.contentDocument.body || this.contentDocument).children[0]);this.remove()"></object>
-</div>
-
-<pre><code>
-&lt;div class=&quot;animateddemo&quot;&gt;
-&lt;object data=&quot;icons.svg#conveyor&quot; onload=&quot;this.before((this.contentDocument.body || this.contentDocument).children[0]);this.remove()&quot;&gt;&lt;/object&gt;
-&lt;/div&gt;
-</code></pre>
-
-</div>
-
-
-
-<div class="editpanel">
-<h2>Customizing your icons</h2>
-<p>These CSS properties were exposed from the SVG for configuration. Try editing them!</p>
-
-<style class="overrides" contenteditable>
-:root {
-/* Shared global properties */
-{{#icons}}
-{{#elems}}
-{{#sharedProps}}
-{{rule}}
-{{/sharedProps}}
-{{/elems}}
-{{/icons}}
-
-
-/* Icon-specific properties */
-{{#icons}}
-{{#elems}}
-{{#localProps}}
-{{rule}}
-{{/localProps}}
-{{/elems}}
-
-
-{{/icons}}
-}
-</style>
-
-
-</div>
-
+        </script>
+    </body>
+    </html>

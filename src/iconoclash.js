@@ -15,10 +15,11 @@
 		icondata: 'icons.json',
 		iconhtml: "icons.html",
 		htmlinput: "../src/preview.html",
+		sharedonly: false,
 		idKey: "iconoclash",
 		banner: "/* Iconoclash: CSS properties exposed from SVGs */",
 		svgstyles: "svg > g {display:none;} svg > g:target{display:inline}",
-		verbose: true,
+		verbose: false,
 		logger: {
 			verbose: console.info,
 			fatal: console.error,
@@ -100,22 +101,27 @@
 
 		// make symbols into groups
 		sprites.element('symbol[id]').each(function(){
-			this.name = "g";
+			//this.name = "g";
 		});
 
+		function getParentNode(elem){
+			if(elem.parentNode.name === "symbol"){
+				return elem.parentNode;
+			}
+			else {
+				return getParentNode(elem.parentNode);
+			}
+		}
 
 		var k = 0;
 		// loop the svg elements that have customizations to expose, across all 
-		sprites.element("[id*='" + config.idKey + "']").each(function(i){
-			var parentName = this.parentNode.attribs.id;
-			var width = this.parentNode.attribs.width;
-			var height = this.parentNode.attribs.width;
-			var id = this.attribs.id;		
+		sprites.element("*[fill]").each(function(i){
+			var parent = getParentNode(this);
+			var parentName = parent.attribs.id;
+			var id = "iconoclash fill";//this.attribs.id;		
 			var elemType = this.name;
 			var afterKey = id.split( config.idKey )[1];
 			var elemData = {};
-			elemData.width = width;
-			elemData.height = height;
 			elemData.elemType = elemType;
 			// assume any space separated values after the key are css props to expose
 			var customProps = afterKey.match(/([^ _\d]+)/g);
@@ -128,37 +134,42 @@
 				for( var j = 0; j < customProps.length; j++ ){
 					var prop = customProps[ j ];
 					var itemVar = "--" + parentName + "-" + elemType + (i+1) + "-" + prop;
-					var fallback = this.attribs[prop] || "initial";
+					var fallback = "initial";
+					if( this.attribs[prop] !== undefined ){
+						fallback = this.attribs[prop];
+					}
+
 					var cssText = "";
-					
 
 					if( !globals[fallback] && fallback !== "initial" ) {
 						globals[fallback] = "--iconoclash-shared-" + k++;
-						var sharedPropRule = globals[fallback] + ": initial; /* default: " + fallback + "*/";
-						CSS.push( sharedPropRule );
-						elemData.sharedProps.push( { "rule": sharedPropRule } );
+						
 					}
 
 					if( globals[fallback] ){
 						cssText = prop + ": var(" + itemVar + ", var("+ globals[fallback] + "," + fallback +"))";
+						var sharedPropRule = globals[fallback] + ": " + fallback + ";";
+						if( CSS.indexOf(sharedPropRule) === -1 ){
+							CSS.push( sharedPropRule );
+						}
+						elemData.sharedProps.push( { "rule": sharedPropRule } );
 						
 					}
-					else {
+					else if (config.sharedonly === false) {
 						cssText = prop + ":  var("+ itemVar + "," + fallback +")";
 					}
 
-					var localPropRule = itemVar + ": initial; /* default: " + fallback + "*/";
-					CSS.push( localPropRule );
-					elemData.localProps.push( { "rule": localPropRule } );
+					if (config.sharedonly === false) {
+						var localPropRule = itemVar + ": initial; /* default: " + fallback + "*/";
+						CSS.push( localPropRule );
+						elemData.localProps.push( { "rule": localPropRule } );
+						
+					}
 					customProps[ j ] = cssText;
 					
 					logger.verbose( "    - Iconoclash added a style to the "+ elemType + ": " + customProps[ j ]);
 					
-					elemData.cssProps[ prop ] = {
-						"localCSSVar": itemVar,
-						"globalCSSvar": globals[fallback],
-						"fallbackValue": fallback
-					};
+					
 				}
 				
 				elemData.cssText = customProps.join(";");
