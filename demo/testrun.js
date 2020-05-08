@@ -1,8 +1,6 @@
 var Iconoclash = require('../src/iconoclash');
-var iconoclash = new Iconoclash( [ 
-    "./svg/skate.svg", 
-    "./svg/vespa.svg", 
-    "./svg/conveyor.svg", 
-    "./svg/lamp.svg"
-], "./output/" );
+var fs = require('fs');
+var dir = fs.readdirSync("./svg", "utf-8");
+dir = dir.map(file => './svg/' + file);
+var iconoclash = new Iconoclash( dir, "./output/" );
 iconoclash.process();
