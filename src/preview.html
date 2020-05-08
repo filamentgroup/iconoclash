@@ -27,6 +27,11 @@
                 text-align: center;
                 margin: 0;
             }
+            .svgstats {
+                font-size: .8em;
+                color: #444;
+                text-align: center;
+            }
             pre,
             style[contenteditable] {
                 display: block;
@@ -164,6 +169,8 @@
             <h1 class="logo">Icono<span>clash!</span></h1>
 
             <p class="subhed">Iconoclash generated an <a href="icons.svg">icons sprite</a> from the following SVG files:</p>
+
+            <p class="svgstats"><strong>SVG sprite size:</strong> {{icons.svgGzipFileSize}} ({{icons.svgFileSize}} uncompressed)</p>
 
             <ul class="iconslist">
             {{#icons}}

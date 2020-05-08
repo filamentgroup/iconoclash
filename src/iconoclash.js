@@ -8,6 +8,8 @@
 	var fs = require( "fs-extra" );
 	var _ = require('lodash');
 	var Mustache = require('mustache');
+	const gzipSize = require('gzip-size');
+
 
 	var defaults = {
 		iconcss: 'icons.css',
@@ -84,7 +86,7 @@
 				var svgdata = {
 					id: id,
 					file: that._fileName(file),
-					source: fs.readFileSync(file, 'utf8'),
+					size: (parseFloat(stat.size) * 0.001).toFixed(2) + "kb",
 					target: config.iconsvg +"#"+ id,
 					//temp width height etc here
 					cssBG: "." + config.idKey + "-" + id + "{ width: 100px; height: 100px;  background: url('"+ config.iconsvg +"#"+ id +"') no-repeat; background-size: contain; }",
@@ -92,7 +94,7 @@
 				};
 
 				// add svg to the sprite
-				sprites.add(id, svgdata.source );
+				sprites.add(id, fs.readFileSync(file, 'utf8') );
 				classes.push( svgdata.cssBG  );
 				data.push(svgdata);
 
@@ -180,6 +182,12 @@
 
 
 		fs.writeFileSync(this.output + config.iconsvg, sprites);
+		let svgStat= fs.statSync(this.output + config.iconsvg);
+		let svgFile = fs.readFileSync(this.output + config.iconsvg, 'utf8');
+		dataContainer.icons.svgFileSize = (svgStat.size * .001).toFixed(2) + "kb";
+		dataContainer.icons.svgGzipFileSize = (gzipSize.sync(svgFile) * .001).toFixed(2) + "kb";
+		
+
 		fs.writeFileSync(this.output + config.icondata, JSON.stringify( dataContainer ) );
 		fs.writeFileSync(this.output + config.iconcss, config.banner + "\n:root {\n" + CSS.join(";\n") + "\n}\n\n" + classes.join("\n") );
 
