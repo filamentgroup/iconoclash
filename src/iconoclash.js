@@ -17,7 +17,7 @@
 		icondata: 'icons.json',
 		iconhtml: "icons.html",
 		htmlinput: "../src/preview.html",
-		sharedonly: false,
+		sharedonly: true,
 		idKey: "iconoclash",
 		banner: "/* Iconoclash: CSS properties exposed from SVGs */",
 		svgstyles: "svg > g {display:none;} svg > g:target{display:inline}",
@@ -89,7 +89,7 @@
 					size: (parseFloat(stat.size) * 0.001).toFixed(2) + "kb",
 					target: config.iconsvg +"#"+ id,
 					//temp width height etc here
-					cssBG: "." + config.idKey + "-" + id + "{ width: 100px; height: 100px;  background: url('"+ config.iconsvg +"#"+ id +"') no-repeat; background-size: contain; }",
+					cssBG: "." + config.idKey + "-" + id + "{  background-image: url('"+ config.iconsvg +"#"+ id + "-bg'); background-repeat: no-repeat; background-size: 20px 20px; background-size: var(--"+ config.idKey +"-bgsize, 20px 20px); }",
 					elems: []
 				};
 
@@ -101,9 +101,16 @@
 			}
 		}); 
 
-		// make symbols into groups
+		// make groups for each symbol so they can be referenced via background img
 		sprites.element('symbol[id]').each(function(){
-			//this.name = "g";
+			var id = this.attribs.id;
+			sprites.add( id + "-temporaryiconoclashsuffix", '<svg><use href="#' + id + '"/></svg>' );
+		});
+
+		// make bg specific symbols into groups
+		sprites.element('symbol[id$="-temporaryiconoclashsuffix"]').each(function(){
+			this.name = "g";
+			this.attribs.id = this.attribs.id.replace("temporaryiconoclashsuffix", "bg" );
 		});
 
 		function getParentNode(elem){
@@ -148,7 +155,7 @@
 						
 					}
 
-					if( globals[fallback] ){
+					if( globals[fallback] && fallback !== "initial" ){
 						cssText = prop + ": var(" + itemVar + ", var("+ globals[fallback] + "," + fallback +"))";
 						var sharedPropRule = globals[fallback] + ": " + fallback + ";";
 						if( CSS.indexOf(sharedPropRule) === -1 ){
@@ -162,7 +169,7 @@
 					}
 
 					if (config.sharedonly === false) {
-						var localPropRule = itemVar + ": initial; /* default: " + fallback + "*/";
+						var localPropRule = itemVar + ": initial;";
 						CSS.push( localPropRule );
 						elemData.localProps.push( { "rule": localPropRule } );
 						
@@ -173,12 +180,14 @@
 					
 					
 				}
-				
 				elemData.cssText = customProps.join(";");
 				data.find(x => x.id === parentName).elems.push( elemData );
 				this.attribs.style = elemData.cssText;
 			}
 		});
+
+		// add shared bg size rule
+		CSS.push( "--"+ config.idKey + "-bgsize: 20px 20px" );
 
 
 		fs.writeFileSync(this.output + config.iconsvg, sprites);
