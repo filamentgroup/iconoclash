@@ -1,5 +1,6 @@
 /* Iconoclash: CSS properties exposed from SVGs */
 :root {
+--001-home-path1-transform: initial;;
 --iconoclash-shared-0: #000000;;
 --iconoclash-shared-1: #3DB39E;;
 --iconoclash-shared-2: #324D5B;;
@@ -22,24 +23,30 @@
 --iconoclash-shared-19: #F4F0D3;;
 --iconoclash-shared-20: #E6E2C7;;
 --iconoclash-shared-21: #E3BD59;;
---iconoclash-shared-22: #1C2C33;;
---iconoclash-shared-23: #CDCDCD;;
---iconoclash-shared-24: #949494;;
---iconoclash-shared-25: #AEAEAE;;
---iconoclash-shared-26: #A6A6A6;;
---iconoclash-shared-27: #9C9C9C;;
---iconoclash-shared-28: #DFDFDF;;
---iconoclash-shared-29: #C3C3C3;;
---iconoclash-shared-30: #3A96B4;;
---iconoclash-shared-31: #3589A4;;
---iconoclash-shared-32: #DBD8BD;;
---iconoclash-shared-33: #B5BCC0;;
---iconoclash-shared-34: #E2574C;;
---iconoclash-shared-35: #EE7269;;
---iconoclash-shared-36: #CB4E44;;
---iconoclash-shared-37: #D1645C;;
---iconoclash-shared-38: #2D4552;;
---iconoclash-shared-39: #2B424D;;
+--iconoclash-shared-22: #DBDEE0;;
+--iconoclash-shared-23: #E4E7E7;;
+--iconoclash-shared-24: #4A4A4A;;
+--iconoclash-shared-25: #277264;;
+--iconoclash-shared-26: #349886;;
+--iconoclash-shared-27: #ECEEEE;;
+--iconoclash-shared-28: #1C2C33;;
+--iconoclash-shared-29: #CDCDCD;;
+--iconoclash-shared-30: #949494;;
+--iconoclash-shared-31: #AEAEAE;;
+--iconoclash-shared-32: #A6A6A6;;
+--iconoclash-shared-33: #9C9C9C;;
+--iconoclash-shared-34: #DFDFDF;;
+--iconoclash-shared-35: #C3C3C3;;
+--iconoclash-shared-36: #3A96B4;;
+--iconoclash-shared-37: #3589A4;;
+--iconoclash-shared-38: #DBD8BD;;
+--iconoclash-shared-39: #B5BCC0;;
+--iconoclash-shared-40: #E2574C;;
+--iconoclash-shared-41: #EE7269;;
+--iconoclash-shared-42: #CB4E44;;
+--iconoclash-shared-43: #D1645C;;
+--iconoclash-shared-44: #2D4552;;
+--iconoclash-shared-45: #2B424D;;
 --iconoclash-bgsize: 20px 20px
 }
 
@@ -536,5 +543,6 @@
 .iconoclash-491-IcoMoon{  background-image: url('icons.svg#491-IcoMoon-bg'); background-repeat: no-repeat; background-size: 20px 20px; background-size: var(--iconoclash-bgsize, 20px 20px); }
 .iconoclash-conveyor{  background-image: url('icons.svg#conveyor-bg'); background-repeat: no-repeat; background-size: 20px 20px; background-size: var(--iconoclash-bgsize, 20px 20px); }
 .iconoclash-lamp{  background-image: url('icons.svg#lamp-bg'); background-repeat: no-repeat; background-size: 20px 20px; background-size: var(--iconoclash-bgsize, 20px 20px); }
+.iconoclash-mountain{  background-image: url('icons.svg#mountain-bg'); background-repeat: no-repeat; background-size: 20px 20px; background-size: var(--iconoclash-bgsize, 20px 20px); }
 .iconoclash-skate{  background-image: url('icons.svg#skate-bg'); background-repeat: no-repeat; background-size: 20px 20px; background-size: var(--iconoclash-bgsize, 20px 20px); }
 .iconoclash-vespa{  background-image: url('icons.svg#vespa-bg'); background-repeat: no-repeat; background-size: 20px 20px; background-size: var(--iconoclash-bgsize, 20px 20px); }

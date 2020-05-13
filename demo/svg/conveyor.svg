@@ -6,7 +6,7 @@
     <clipPath id="b">
         <use xlink:href="#a" overflow="visible"></use>
     </clipPath>
-    <path id="iconoclash fill" clip-path="url(#b)" fill="#3DB39E" d="M50 0c27.6 0 50 22.4 50 50s-22.4 50-50 50S0 77.6 0 50 22.4 0 50 0z">
+    <path clip-path="url(#b)" fill="#3DB39E" d="M50 0c27.6 0 50 22.4 50 50s-22.4 50-50 50S0 77.6 0 50 22.4 0 50 0z">
     </path>
     <path clip-path="url(#b)" fill="#324D5B"
         d="M.6 42c-.4 2.6-.6 5.3-.6 8 0 8.7 2.2 16.9 6.1 24h87.7c3.9-7.1 6.1-15.3 6.1-24 0-2.7-.2-5.4-.6-8H.6z"></path>
@@ -16,7 +16,7 @@
     <path clip-path="url(#b)"
         d="M53.5 48c-.5 0-1.1.4-1.4 1-.3.6-.1 1 .4 1s1.1-.4 1.4-1c.2-.6.1-1-.4-1zm-32 0c-.5 0-1.1.4-1.4 1-.3.6-.1 1 .4 1s1.1-.4 1.4-1c.2-.6.1-1-.4-1z"
         fill="none"></path>
-    <g class="products" id="iconoclash animation" clip-path="url(#b)">
+    <g class="products" clip-path="url(#b)">
         <path fill="#FAFAFA" d="M72.2 37v10l-10 16-1-10 9-16h2z"></path>
         <path fill="#EDEDED" d="M56.2 37h16l-10 16h-16l10-16z"></path>
         <path fill="#BEBEBE" d="M62.2 53h-16v10h16V53z"></path>
