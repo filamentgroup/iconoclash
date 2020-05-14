@@ -126,7 +126,12 @@
 		var k = 0;
 
 		// loop the svg elements that have customizations to expose, across all 
-		sprites.element("*[fill],*[stroke],*[id*='iconoclash']").each(function(i){
+		var selector = ["*[id*='iconoclash']"].concat(config.autoExpose.map(function(i){
+			return "*[" + i + "]";
+		}))
+		.join(",");
+
+		sprites.element( selector ).each(function(i){
 			var parent = getParentNode(this);
 			var parentName = parent.attribs.id;
 			var id = this.attribs.id;
