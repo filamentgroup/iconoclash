@@ -17,8 +17,8 @@
 		icondata: 'icons.json',
 		iconhtml: "icons.html",
 		htmlinput: "../src/preview.html",
-		sharedonly: true,
 		idKey: "iconoclash",
+		autoExpose: ["fill"],
 		banner: "/* Iconoclash: CSS properties exposed from SVGs */",
 		svgstyles: "svg > g {display:none;} svg > g:target{display:inline}",
 		verbose: false,
@@ -69,6 +69,7 @@
 		logger.ok( "Iconoclash is processing " + this.files.length + " svg files." );
 		var dataContainer = {};
 		var data = dataContainer.icons = [];
+		var sharedData = dataContainer.sharedProps = [];
 		var CSS = [  ];
 		var classes = [];
 		
@@ -123,11 +124,20 @@
 		}
 
 		var k = 0;
+
 		// loop the svg elements that have customizations to expose, across all 
-		sprites.element("*[fill]").each(function(i){
+		sprites.element("*[fill],*[stroke],*[id*='iconoclash']").each(function(i){
 			var parent = getParentNode(this);
 			var parentName = parent.attribs.id;
-			var id = "iconoclash fill";//this.attribs.id;		
+			var id = this.attribs.id;
+			var localCustomizations = false;
+			if( id ){
+				localCustomizations = id.indexOf( config.idKey ) > -1 && id.split( config.idKey )[1];
+			}
+			if( !id || !localCustomizations ){
+				id = config.idKey;
+			}
+			id += " " + config.autoExpose.join(" ");
 			var elemType = this.name;
 			var afterKey = id.split( config.idKey )[1];
 			var elemData = {};
@@ -156,19 +166,25 @@
 					}
 
 					if( globals[fallback] && fallback !== "initial" ){
-						cssText = prop + ": var(" + itemVar + ", var("+ globals[fallback] + "," + fallback +"))";
+						if( localCustomizations ){
+							cssText = prop + ": var(" + itemVar + ", var("+ globals[fallback] + "," + fallback +"))";
+						}
+						else {
+							cssText = prop + ": var("+ globals[fallback] + "," + fallback +")";
+						}
 						var sharedPropRule = globals[fallback] + ": " + fallback + ";";
 						if( CSS.indexOf(sharedPropRule) === -1 ){
 							CSS.push( sharedPropRule );
+							sharedData.push( { "prop": globals[fallback], "value": fallback }  );
 						}
 						elemData.sharedProps.push( { "rule": sharedPropRule } );
 						
 					}
-					else if (config.sharedonly === false) {
+					else if (localCustomizations) {
 						cssText = prop + ":  var("+ itemVar + "," + fallback +")";
 					}
 
-					if (config.sharedonly === false) {
+					if ( localCustomizations && localCustomizations.indexOf( prop ) > -1 ) {
 						var localPropRule = itemVar + ": initial;";
 						CSS.push( localPropRule );
 						elemData.localProps.push( { "rule": localPropRule } );

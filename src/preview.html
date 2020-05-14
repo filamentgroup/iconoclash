@@ -7,9 +7,9 @@
 		<meta name="Description" content="">
 		<meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="icons.css">
-        <style>
+        <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet">        <style>
             body {
-                font-family: sans-serif;
+                font-family: Mutka,sans-serif;
             }
             .logo {
                 font-weight: bold;
@@ -17,32 +17,31 @@
                 text-align: center;
             }
             .logo span {
-                font-size: 1.2em;
-                transform: rotate(20deg) translateX(-.9em) translateY(0);
+                transform: rotate(10deg) translateX(-1.2em) translateY(-.2em);
                 position: relative;
                 display: inline-block;
                 color: fuchsia;
             }
             .subhed {
                 text-align: center;
-                margin: 0;
+                margin: 0 0 1em;
+
             }
             .svgstats {
                 font-size: .8em;
                 color: #444;
                 text-align: center;
+                max-width: 30em;
+                margin: 1em auto;
+                line-height: 1.5;
             }
-            pre,
-            style[contenteditable] {
+            pre {
                 display: block;
                 background: #eee;
                 padding: .5rem;
                 color: #111;
                 white-space: pre-wrap;
                 font-size: 1em;
-            }
-            style[contenteditable] {
-                font-size: .8em;
             }
             h2 {
                 margin: 2em 0 0;
@@ -66,10 +65,46 @@
             }
             details {
                 position: relative;
+                display: inline-block;
             }
-            details > summary {
-                cursor: pointer;
+            details > summary { 
                 list-style: none;
+                cursor: pointer;
+                display: inline-block;
+            }
+            .svgstats details > summary {
+                min-height: 1.4em;
+                color: teal;
+                text-decoration: underline;
+                border: 1px solid #eee;
+                padding: .3em 1em;
+                background: #fff;
+                border-radius: 3px;
+                text-decoration: none;
+            }
+            .svgstats details > summary:after {
+                display: inline-block;
+                content: "";
+                border-top: 4px solid #aaa;
+                border-right: 3px solid transparent;
+                border-left: 3px solid transparent;
+                width: 0;
+                height: 0;
+                margin: 0 0 0 .5em;
+            }
+            .svgstats .iconslist-customs {
+                margin-top: 1em;
+                width: 350px;
+                margin-left: -175px;
+                padding-top: 1em;
+                padding-bottom: 1em;
+            }
+            li details {
+                display: block;
+            }
+            li details > summary {
+                
+               
                 display: flex;
                 flex-flow: column nowrap;
                 border: 2px dotted #eee;
@@ -80,8 +115,8 @@
                 transition: transform .3s ease-in-out;
                 background: #fff;
             }
-            details:hover > summary,
-            details > summary:focus {
+            li details:hover > summary,
+            li details > summary:focus {
                 outline: none;
                 border-color: #ddd;
                 z-index: 50;
@@ -89,7 +124,7 @@
                 transform: scale(1.1);
                 --iconoclash-shared-0: teal;
             }
-            details > summary:focus {
+            li details > summary:focus {
                 border-color: #aaa;
                 background: #eee;
             }
@@ -160,6 +195,34 @@
                 font-size: .7em;
                 margin: .6em 0 0;
             }
+            .iconslist-customs label {
+                position: relative;
+                height: 1em;
+                margin: 0 0 1.5em;
+                display: block;
+                line-height: 1;
+            }
+            .iconslist-customs input {
+                color: transparent;
+                border: 1px solid #000;
+                height: 1em;
+                padding: .5em;
+                width: 5em;
+                font-size: 1em;
+            }
+            .iconslist-customs .colorlabel {
+                position: absolute;
+                top: 1px;
+                left: 1px;
+                width: 5em;
+                height: 1em;
+                padding: .5em;
+                mix-blend-mode: difference;
+                color: #fff;
+                pointer-events: none;
+                -moz-user-select: none;
+                -webkit-user-select: none;
+            }
         </style>
 </head>
 <body>
@@ -168,8 +231,21 @@
 
             <h1 class="logo">Icono<span>clash!</span></h1>
 
-            <p class="subhed">Iconoclash generated an <a href="icons.svg">icons sprite</a>.</p>
+            <p class="subhed">Iconoclash generated an <a href="icons.svg">icons sprite</a> from a folder of SVGs.</p>
 
+            <div class="svgstats">It also exposed some custom CSS properties for shared property values, which can be overridden from this page! <details><summary>View them here</summary>
+            <div class="iconslist-customs">
+                {{#sharedProps}}
+                <label>
+                        <input type="text" data-prop="{{prop}}" style="background:{{value}}" value="{{value}}">
+                        <span class="colorlabel">{{value}}</span>
+                        <style></style>{{prop}}
+                </label>
+                {{/sharedProps}}
+            </div>
+        </details>
+        </div>
+        
             <p class="svgstats"><strong>SVG sprite size:</strong> {{icons.svgGzipFileSize}} ({{icons.svgFileSize}} uncompressed)</p>
 
             <ul class="iconslist">
@@ -201,13 +277,22 @@
 
         </div>
         <script>
-            var deets = document.querySelectorAll("details");
-            for(var i in deets){
+            var deets = document.querySelectorAll("ul details");
+            for(var i = 0; i<deets.length; i++){
                 deets[i].addEventListener("mouseenter", function(){
                     this.setAttribute("open", true);
                 });
                 deets[i].addEventListener("mouseleave", function(){
                     this.removeAttribute("open");
+                });
+            }
+
+            var inputs = document.querySelectorAll("input");
+            for(var i = 0; i<inputs.length; i++){
+                inputs[i].addEventListener("input", function(){
+                    this.nextElementSibling.innerText = this.value;
+                    this.nextElementSibling.nextElementSibling.innerText = ':root {' + this.getAttribute("data-prop") + ':' + this.value + '}';
+                    this.style.background = this.value;
                 });
             }
 

@@ -7,9 +7,9 @@
 		<meta name="Description" content="">
 		<meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="icons.css">
-        <style>
+        <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet">        <style>
             body {
-                font-family: sans-serif;
+                font-family: Mutka,sans-serif;
             }
             .logo {
                 font-weight: bold;
@@ -17,32 +17,31 @@
                 text-align: center;
             }
             .logo span {
-                font-size: 1.2em;
-                transform: rotate(20deg) translateX(-.9em) translateY(0);
+                transform: rotate(10deg) translateX(-1.2em) translateY(-.2em);
                 position: relative;
                 display: inline-block;
                 color: fuchsia;
             }
             .subhed {
                 text-align: center;
-                margin: 0;
+                margin: 0 0 1em;
+
             }
             .svgstats {
                 font-size: .8em;
                 color: #444;
                 text-align: center;
+                max-width: 30em;
+                margin: 1em auto;
+                line-height: 1.5;
             }
-            pre,
-            style[contenteditable] {
+            pre {
                 display: block;
                 background: #eee;
                 padding: .5rem;
                 color: #111;
                 white-space: pre-wrap;
                 font-size: 1em;
-            }
-            style[contenteditable] {
-                font-size: .8em;
             }
             h2 {
                 margin: 2em 0 0;
@@ -66,10 +65,46 @@
             }
             details {
                 position: relative;
+                display: inline-block;
             }
-            details > summary {
-                cursor: pointer;
+            details > summary { 
                 list-style: none;
+                cursor: pointer;
+                display: inline-block;
+            }
+            .svgstats details > summary {
+                min-height: 1.4em;
+                color: teal;
+                text-decoration: underline;
+                border: 1px solid #eee;
+                padding: .3em 1em;
+                background: #fff;
+                border-radius: 3px;
+                text-decoration: none;
+            }
+            .svgstats details > summary:after {
+                display: inline-block;
+                content: "";
+                border-top: 4px solid #aaa;
+                border-right: 3px solid transparent;
+                border-left: 3px solid transparent;
+                width: 0;
+                height: 0;
+                margin: 0 0 0 .5em;
+            }
+            .svgstats .iconslist-customs {
+                margin-top: 1em;
+                width: 350px;
+                margin-left: -175px;
+                padding-top: 1em;
+                padding-bottom: 1em;
+            }
+            li details {
+                display: block;
+            }
+            li details > summary {
+                
+               
                 display: flex;
                 flex-flow: column nowrap;
                 border: 2px dotted #eee;
@@ -80,8 +115,8 @@
                 transition: transform .3s ease-in-out;
                 background: #fff;
             }
-            details:hover > summary,
-            details > summary:focus {
+            li details:hover > summary,
+            li details > summary:focus {
                 outline: none;
                 border-color: #ddd;
                 z-index: 50;
@@ -89,7 +124,7 @@
                 transform: scale(1.1);
                 --iconoclash-shared-0: teal;
             }
-            details > summary:focus {
+            li details > summary:focus {
                 border-color: #aaa;
                 background: #eee;
             }
@@ -160,6 +195,34 @@
                 font-size: .7em;
                 margin: .6em 0 0;
             }
+            .iconslist-customs label {
+                position: relative;
+                height: 1em;
+                margin: 0 0 1.5em;
+                display: block;
+                line-height: 1;
+            }
+            .iconslist-customs input {
+                color: transparent;
+                border: 1px solid #000;
+                height: 1em;
+                padding: .5em;
+                width: 5em;
+                font-size: 1em;
+            }
+            .iconslist-customs .colorlabel {
+                position: absolute;
+                top: 1px;
+                left: 1px;
+                width: 5em;
+                height: 1em;
+                padding: .5em;
+                mix-blend-mode: difference;
+                color: #fff;
+                pointer-events: none;
+                -moz-user-select: none;
+                -webkit-user-select: none;
+            }
         </style>
 </head>
 <body>
@@ -168,8 +231,244 @@
 
             <h1 class="logo">Icono<span>clash!</span></h1>
 
-            <p class="subhed">Iconoclash generated an <a href="icons.svg">icons sprite</a>.</p>
+            <p class="subhed">Iconoclash generated an <a href="icons.svg">icons sprite</a> from a folder of SVGs.</p>
 
+            <div class="svgstats">It also exposed some custom CSS properties for shared property values, which can be overridden from this page! <details><summary>View them here</summary>
+            <div class="iconslist-customs">
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-0" style="background:#000000" value="#000000">
+                        <span class="colorlabel">#000000</span>
+                        <style></style>--iconoclash-shared-0
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-1" style="background:#3DB39E" value="#3DB39E">
+                        <span class="colorlabel">#3DB39E</span>
+                        <style></style>--iconoclash-shared-1
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-2" style="background:#324D5B" value="#324D5B">
+                        <span class="colorlabel">#324D5B</span>
+                        <style></style>--iconoclash-shared-2
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-3" style="background:#475F6C" value="#475F6C">
+                        <span class="colorlabel">#475F6C</span>
+                        <style></style>--iconoclash-shared-3
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-4" style="background:#3E5765" value="#3E5765">
+                        <span class="colorlabel">#3E5765</span>
+                        <style></style>--iconoclash-shared-4
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-5" style="background:none" value="none">
+                        <span class="colorlabel">none</span>
+                        <style></style>--iconoclash-shared-5
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-6" style="background:#FAFAFA" value="#FAFAFA">
+                        <span class="colorlabel">#FAFAFA</span>
+                        <style></style>--iconoclash-shared-6
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-7" style="background:#EDEDED" value="#EDEDED">
+                        <span class="colorlabel">#EDEDED</span>
+                        <style></style>--iconoclash-shared-7
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-8" style="background:#BEBEBE" value="#BEBEBE">
+                        <span class="colorlabel">#BEBEBE</span>
+                        <style></style>--iconoclash-shared-8
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-9" style="background:#7D8D95" value="#7D8D95">
+                        <span class="colorlabel">#7D8D95</span>
+                        <style></style>--iconoclash-shared-9
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-10" style="background:#EFC75E" value="#EFC75E">
+                        <span class="colorlabel">#EFC75E</span>
+                        <style></style>--iconoclash-shared-10
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-11" style="background:#283E49" value="#283E49">
+                        <span class="colorlabel">#283E49</span>
+                        <style></style>--iconoclash-shared-11
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-12" style="background:#394C56" value="#394C56">
+                        <span class="colorlabel">#394C56</span>
+                        <style></style>--iconoclash-shared-12
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-13" style="background:#70838D" value="#70838D">
+                        <span class="colorlabel">#70838D</span>
+                        <style></style>--iconoclash-shared-13
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-14" style="background:#405561" value="#405561">
+                        <span class="colorlabel">#405561</span>
+                        <style></style>--iconoclash-shared-14
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-15" style="background:#CBA950" value="#CBA950">
+                        <span class="colorlabel">#CBA950</span>
+                        <style></style>--iconoclash-shared-15
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-16" style="background:#CACACA" value="#CACACA">
+                        <span class="colorlabel">#CACACA</span>
+                        <style></style>--iconoclash-shared-16
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-17" style="background:#5B717C" value="#5B717C">
+                        <span class="colorlabel">#5B717C</span>
+                        <style></style>--iconoclash-shared-17
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-18" style="background:#37A18E" value="#37A18E">
+                        <span class="colorlabel">#37A18E</span>
+                        <style></style>--iconoclash-shared-18
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-19" style="background:#F4F0D3" value="#F4F0D3">
+                        <span class="colorlabel">#F4F0D3</span>
+                        <style></style>--iconoclash-shared-19
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-20" style="background:#E6E2C7" value="#E6E2C7">
+                        <span class="colorlabel">#E6E2C7</span>
+                        <style></style>--iconoclash-shared-20
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-21" style="background:#E3BD59" value="#E3BD59">
+                        <span class="colorlabel">#E3BD59</span>
+                        <style></style>--iconoclash-shared-21
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-22" style="background:#DBDEE0" value="#DBDEE0">
+                        <span class="colorlabel">#DBDEE0</span>
+                        <style></style>--iconoclash-shared-22
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-23" style="background:#E4E7E7" value="#E4E7E7">
+                        <span class="colorlabel">#E4E7E7</span>
+                        <style></style>--iconoclash-shared-23
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-24" style="background:#4A4A4A" value="#4A4A4A">
+                        <span class="colorlabel">#4A4A4A</span>
+                        <style></style>--iconoclash-shared-24
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-25" style="background:#277264" value="#277264">
+                        <span class="colorlabel">#277264</span>
+                        <style></style>--iconoclash-shared-25
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-26" style="background:#349886" value="#349886">
+                        <span class="colorlabel">#349886</span>
+                        <style></style>--iconoclash-shared-26
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-27" style="background:#ECEEEE" value="#ECEEEE">
+                        <span class="colorlabel">#ECEEEE</span>
+                        <style></style>--iconoclash-shared-27
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-28" style="background:#1C2C33" value="#1C2C33">
+                        <span class="colorlabel">#1C2C33</span>
+                        <style></style>--iconoclash-shared-28
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-29" style="background:#CDCDCD" value="#CDCDCD">
+                        <span class="colorlabel">#CDCDCD</span>
+                        <style></style>--iconoclash-shared-29
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-30" style="background:#949494" value="#949494">
+                        <span class="colorlabel">#949494</span>
+                        <style></style>--iconoclash-shared-30
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-31" style="background:#AEAEAE" value="#AEAEAE">
+                        <span class="colorlabel">#AEAEAE</span>
+                        <style></style>--iconoclash-shared-31
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-32" style="background:#A6A6A6" value="#A6A6A6">
+                        <span class="colorlabel">#A6A6A6</span>
+                        <style></style>--iconoclash-shared-32
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-33" style="background:#9C9C9C" value="#9C9C9C">
+                        <span class="colorlabel">#9C9C9C</span>
+                        <style></style>--iconoclash-shared-33
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-34" style="background:#DFDFDF" value="#DFDFDF">
+                        <span class="colorlabel">#DFDFDF</span>
+                        <style></style>--iconoclash-shared-34
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-35" style="background:#C3C3C3" value="#C3C3C3">
+                        <span class="colorlabel">#C3C3C3</span>
+                        <style></style>--iconoclash-shared-35
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-36" style="background:#3A96B4" value="#3A96B4">
+                        <span class="colorlabel">#3A96B4</span>
+                        <style></style>--iconoclash-shared-36
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-37" style="background:#3589A4" value="#3589A4">
+                        <span class="colorlabel">#3589A4</span>
+                        <style></style>--iconoclash-shared-37
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-38" style="background:#DBD8BD" value="#DBD8BD">
+                        <span class="colorlabel">#DBD8BD</span>
+                        <style></style>--iconoclash-shared-38
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-39" style="background:#B5BCC0" value="#B5BCC0">
+                        <span class="colorlabel">#B5BCC0</span>
+                        <style></style>--iconoclash-shared-39
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-40" style="background:#E2574C" value="#E2574C">
+                        <span class="colorlabel">#E2574C</span>
+                        <style></style>--iconoclash-shared-40
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-41" style="background:#EE7269" value="#EE7269">
+                        <span class="colorlabel">#EE7269</span>
+                        <style></style>--iconoclash-shared-41
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-42" style="background:#CB4E44" value="#CB4E44">
+                        <span class="colorlabel">#CB4E44</span>
+                        <style></style>--iconoclash-shared-42
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-43" style="background:#D1645C" value="#D1645C">
+                        <span class="colorlabel">#D1645C</span>
+                        <style></style>--iconoclash-shared-43
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-44" style="background:#2D4552" value="#2D4552">
+                        <span class="colorlabel">#2D4552</span>
+                        <style></style>--iconoclash-shared-44
+                </label>
+                <label>
+                        <input type="text" data-prop="--iconoclash-shared-45" style="background:#2B424D" value="#2B424D">
+                        <span class="colorlabel">#2B424D</span>
+                        <style></style>--iconoclash-shared-45
+                </label>
+            </div>
+        </details>
+        </div>
+        
             <p class="svgstats"><strong>SVG sprite size:</strong> 90.00kb (377.54kb uncompressed)</p>
 
             <ul class="iconslist">
@@ -10952,13 +11251,22 @@
 
         </div>
         <script>
-            var deets = document.querySelectorAll("details");
-            for(var i in deets){
+            var deets = document.querySelectorAll("ul details");
+            for(var i = 0; i<deets.length; i++){
                 deets[i].addEventListener("mouseenter", function(){
                     this.setAttribute("open", true);
                 });
                 deets[i].addEventListener("mouseleave", function(){
                     this.removeAttribute("open");
+                });
+            }
+
+            var inputs = document.querySelectorAll("input");
+            for(var i = 0; i<inputs.length; i++){
+                inputs[i].addEventListener("input", function(){
+                    this.nextElementSibling.innerText = this.value;
+                    this.nextElementSibling.nextElementSibling.innerText = ':root {' + this.getAttribute("data-prop") + ':' + this.value + '}';
+                    this.style.background = this.value;
                 });
             }
 
