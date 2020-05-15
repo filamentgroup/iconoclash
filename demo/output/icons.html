@@ -18,6 +18,7 @@
                 letter-spacing: -.08em;
                 text-align: center;
                 font-size: 3em;
+                margin: 4em 0 .4em;
             }
             .logo span {
                 transform: rotate(10deg) translateX(-1.2em) translateY(-.2em);
@@ -28,10 +29,10 @@
             .subhed {
                 text-align: center;
                 margin: 0 0 1em;
-                font-size: 1.2em;
+                font-size: 1.1em;
             }
             .svgstats {
-                font-size: 1em;
+                font-size: .9em;
                 color: #444;
                 text-align: center;
                 max-width: 30em;
@@ -84,6 +85,7 @@
                 background: #fff;
                 border-radius: 3px;
                 text-decoration: none;
+                font-size: .9em;
             }
             .svgstats details > summary:after {
                 display: inline-block;
@@ -117,7 +119,6 @@
                 margin: -1px;
                 transition: transform .3s ease-in-out;
                 background: #fff;
-                transition: 1s linear;
             }
             li details:hover > summary,
             li details > summary:focus {
@@ -138,7 +139,6 @@
                 font-size: .8em;
                 flex: 0 0 1em;
             }
-
             details > summary::-webkit-details-marker {
                 display: none;
             }
@@ -238,7 +238,7 @@
 
             <p class="subhed">Iconoclash generated an <a href="icons.svg">icons sprite</a> from a folder of SVGs.</p>
 
-            <div class="svgstats">It also exposed some custom CSS properties for shared property values, which can be overridden from this page! <details><summary>View them here</summary>
+            <div class="svgstats">It also exposed some custom CSS properties for shared property values, which can be overridden from this page! <details><summary>View/Edit them here</summary>
             <div class="iconslist-customs">
                 <label>
                         <input type="text" data-prop="--iconoclash-shared-0" style="background:none" value="none">
@@ -264,7 +264,7 @@
         </details>
         </div>
         
-            <p class="svgstats"><strong>SVG sprite size:</strong> 5.41kb (33.62kb uncompressed)</p>
+        <p class="svgstats"><strong>SVG sprite size:</strong> 5.41kb (33.62kb uncompressed)</p>
 
             <ul class="iconslist">
                 <li>
@@ -564,6 +564,9 @@
             </ul>
 
         </div>
+
+        <p class="svgstats">Sample icons on this page were <a href="http://www.freepik.com">designed by studiogstock / Freepik</a>. Thanks!</p>
+
         <script>
             var deets = document.querySelectorAll("ul details");
             for(var i = 0; i<deets.length; i++){
