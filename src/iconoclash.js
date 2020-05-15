@@ -180,7 +180,10 @@
 						var sharedPropRule = globals[fallback] + ": " + fallback + ";";
 						if( CSS.indexOf(sharedPropRule) === -1 ){
 							CSS.push( sharedPropRule );
-							sharedData.push( { "prop": globals[fallback], "value": fallback }  );
+							sharedData.push( { 
+								"prop": globals[fallback], 
+								"value": fallback 
+							});
 						}
 						elemData.sharedProps.push( { "rule": sharedPropRule } );
 						
