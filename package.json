@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/filamentgroup/iconoclash.git"
   },
-  "main": "src/iconoclash.js",
+  "main": "src/iconoclash",
   "keywords": [
     "icons",
     "svg"
