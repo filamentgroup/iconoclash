@@ -18,7 +18,7 @@
     "url": "https://github.com/filamentgroup/iconoclash/issues"
   },
   "homepage": "https://github.com/filamentgroup/iconoclash",
-  "devDependencies": {
+  "dependencies": {
     "svgstore": "3.0.0-2",
     "lodash": "^4.17.11",
     "fs-extra": "^7.0.1",
