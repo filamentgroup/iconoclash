@@ -1,5 +1,6 @@
 /*global require:true*/
 /*global module:true*/
+/*global __dirname:true*/
 /*global console:true*/
 (function(){
 	"use strict";
@@ -16,7 +17,7 @@
 		iconsvg: 'icons.svg',
 		icondata: 'icons.json',
 		iconhtml: "icons.html",
-		htmlinput: "../src/preview.html",
+		htmlinput: path.join( __dirname, "preview.html" ),
 		idKey: "iconoclash",
 		autoExpose: ["fill"],
 		banner: "/* Iconoclash: CSS properties exposed from SVGs */",
