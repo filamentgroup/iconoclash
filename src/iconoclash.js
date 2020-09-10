@@ -21,6 +21,7 @@
 		htmlinput: path.join( __dirname, "preview.html" ),
 		idKey: "iconoclash",
 		autoExpose: ["fill"],
+		ignoreInsideElems: 'a|altGlyphDef|clipPath|color-profile|cursor|filter|font|font-face|foreignObject|image|marker|mask|pattern|script|style|switch|text|view',
 		banner: "/* Iconoclash: CSS properties exposed from SVGs */",
 		svgstyles: "svg > g {display:none;} svg > g:target{display:inline}",
 		verbose: false,
@@ -134,6 +135,10 @@
 		.join(",");
 
 		sprites.element( selector ).each(function(i){
+			// make sure we're not dealing with defs elems
+			if(this.parent.name.match( config.ignoreInsideElems )){
+				return;
+			}
 			var parent = getParentNode(this);
 			var parentName = parent.attribs.id;
 			var id = this.attribs.id;
