@@ -76,6 +76,7 @@ The Iconoclash function accepts a third option to override these defaults:
     htmlinput: "../src/preview.html",
     idKey: "iconoclash",
     autoExpose: ["fill"],
+    setAutoExposeDefaults: false,
     ignoreInsideElems: 'a|altGlyphDef|clipPath|color-profile|cursor|filter|font|font-face|foreignObject|image|marker|mask|pattern|script|style|switch|text|view',
     banner: "/* Iconoclash: CSS properties exposed from SVGs */",
     svgstyles: "svg > g {display:none;} svg > g:target{display:inline}",
