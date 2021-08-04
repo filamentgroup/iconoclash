@@ -21,6 +21,7 @@
 		htmlinput: path.join( __dirname, "preview.html" ),
 		idKey: "iconoclash",
 		autoExpose: ["fill"],
+		setAutoExposeDefaults: false,
 		ignoreInsideElems: 'a|altGlyphDef|clipPath|color-profile|cursor|filter|font|font-face|foreignObject|image|marker|mask|pattern|script|style|switch|text|view',
 		banner: "/* Iconoclash: CSS properties exposed from SVGs */",
 		svgstyles: "svg > g {display:none;} svg > g:target{display:inline}",
@@ -126,6 +127,22 @@
 			}
 		}
 
+		// iconoclash needs a default attribute explicitly set
+		// so, for svg source files that rely on a default fill, stroke, etc, 
+		// this option will set autoExpose'd attrs to 'initial' if they are not defined
+		// default false since it could cause unexpected results.
+		if( config.setAutoExposeDefaults  ){
+			sprites.element('symbol path, symbol rect, symbol circle, symbol ellipse, symbol line, symbol polyline, symbol polygon').each(function(){
+				let elem = this;
+				config.autoExpose.forEach(function(i){
+					let attr = i;
+					if(!elem.attribs[i]){
+						elem.attribs[i] = "currentColor";
+					}
+				});
+			});
+		}
+
 		var k = 0;
 
 		// loop the svg elements that have customizations to expose, across all 
@@ -172,12 +189,12 @@
 
 					var cssText = "";
 
-					if( !globals[fallback] && fallback !== "initial" ) {
+					if( !globals[fallback] && (config.setAutoExposeDefaults === true || config.fallback !== "initial") ) {
 						globals[fallback] = "--iconoclash-shared-" + k++;
 						
 					}
 
-					if( globals[fallback] && fallback !== "initial" ){
+					if( globals[fallback] && (config.setAutoExposeDefaults === true || config.fallback !== "initial") ){
 						if( localCustomizations ){
 							cssText = prop + ": var(" + itemVar + ", var("+ globals[fallback] + "," + fallback +"))";
 						}
