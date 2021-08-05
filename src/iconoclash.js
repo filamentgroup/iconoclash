@@ -21,6 +21,7 @@
 		htmlinput: path.join( __dirname, "preview.html" ),
 		idKey: "iconoclash",
 		autoExpose: ["fill"],
+		writeIndividualFiles: false,
 		setAutoExposeDefaults: false,
 		ignoreInsideElems: 'a|altGlyphDef|clipPath|color-profile|cursor|filter|font|font-face|foreignObject|image|marker|mask|pattern|script|style|switch|text|view',
 		banner: "/* Iconoclash: CSS properties exposed from SVGs */",
@@ -137,7 +138,7 @@
 				config.autoExpose.forEach(function(i){
 					let attr = i;
 					if(!elem.attribs[i]){
-						elem.attribs[i] = "initial";
+						elem.attribs[i] = "currentColor";
 					}
 				});
 			});
@@ -237,8 +238,28 @@
 		// add shared bg size rule
 		CSS.push( "--"+ config.idKey + "-bgsize: 20px 20px" );
 
+		if( !config.writeIndividualFiles ){
+			fs.writeFileSync(this.output + config.iconsvg, sprites);
+		}
+		else{
+			// make a new sprite for each symbol, 
+			// set its children to a filtered subset of the big sprite
+			// based on the matching children from the big sprite
+			let outDir = this.output;
+			sprites.element("symbol").each(function(){
+				let id = this.attribs.id;
+				if(id ){
+					let thisSprite = svgstore();
+					let subsymbols = sprites.element.root()[0].children[0].children.filter(function(child){
+						return child.name === "defs" || child.attribs.id && child.attribs.id.indexOf( id ) > -1;
+					})
+					thisSprite.element.root()[0].children[0].children = subsymbols;
 
-		fs.writeFileSync(this.output + config.iconsvg, sprites);
+					fs.writeFileSync(outDir + id + ".svg", thisSprite);
+				}
+			});
+			
+		}
 		let svgStat= fs.statSync(this.output + config.iconsvg);
 		let svgFile = fs.readFileSync(this.output + config.iconsvg, 'utf8');
 		dataContainer.icons.svgFileSize = (svgStat.size * .001).toFixed(2) + "kb";
