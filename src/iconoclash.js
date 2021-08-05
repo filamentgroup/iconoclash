@@ -138,7 +138,7 @@
 				config.autoExpose.forEach(function(i){
 					let attr = i;
 					if(!elem.attribs[i]){
-						elem.attribs[i] = "currentColor";
+						elem.attribs[i] = "initial";
 					}
 				});
 			});
