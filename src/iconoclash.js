@@ -215,12 +215,12 @@
 
 					var cssText = "";
 
-					if( !globals[fallback] && (config.setAutoExposeDefaults === true || config.fallback !== "initial") ) {
+					if( !globals[fallback] && (config.setAutoExposeDefaults === true || fallback !== "initial") ) {
 						globals[fallback] = "--iconoclash-shared-" + k++;
 						
 					}
 
-					if( globals[fallback] && (config.setAutoExposeDefaults === true || config.fallback !== "initial") ){
+					if( globals[fallback] && (config.setAutoExposeDefaults === true || fallback !== "initial") ){
 						if( localCustomizations ){
 							cssText = prop + ": var(" + itemVar + ", var("+ globals[fallback] + "," + fallback +"))";
 						}
