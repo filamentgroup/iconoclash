@@ -15,9 +15,16 @@ Pass an array of SVG files to iconoclash and it will combine them into a single 
  </svg>
 ```
 
-That single Icons.svg file can be used for all icons throughout your site and it only needs to load once, which is nice for performance and caching. However, a typical downside to using external SVG like this is that you can't easily use CSS to style particular shapes within that external SVG, say, to change the fill color of a particular group.
+That single Icons.svg file can be used for all icons throughout your site and it only needs to load once, which can be nice for performance and caching. If you'd like though, you can keep the svgs separate in production instead by setting the `writeIndividualFiles` option to `true`. This works nicely when you have a great number of potential icons to load and don't want to load all of them every time. As external icons, your paths instead look like this:
 
-2. Iconoclash makes this problem go away by exposing CSS custom properties on the SVG elements you'd like to style. By default, it will find all fill properties within the svg that share common colors, and assign them a configurable shared CSS property. Changing that property in your parent page will change all instances of where that property is used in your external SVGs.
+ ```html
+<svg width="100" height="100">
+    <use xlink:href="vespa.svg#vespa"></use>
+ </svg>
+```
+
+
+Regardless of sprite or no sprite, a typical downside to using external SVG like this is that you can't easily use CSS to style particular shapes within that external SVG, say, to change the fill color of a particular group. Iconoclash makes this problem go away by exposing CSS custom properties on the SVG elements themselves that you'd like to be able to style. By default, it will find all `fill` properties within the svg that share common colors, and assign them a configurable shared CSS property. Changing that property in your parent page will change all instances of where that property is used in your external SVGs.
 
 Here we have an `iconoclash-shared-0` property that will be shared by every other svg element in the set that has the same value. So you could override all icons to have a different fill for this one color by changing `iconoclash-shared-0`:
 
@@ -77,6 +84,7 @@ The Iconoclash function accepts a third option to override these defaults:
     idKey: "iconoclash",
     autoExpose: ["fill"],
     setAutoExposeDefaults: false,
+    writeIndividualFiles: false,
     ignoreInsideElems: 'a|altGlyphDef|clipPath|color-profile|cursor|filter|font|font-face|foreignObject|image|marker|mask|pattern|script|style|switch|text|view',
     banner: "/* Iconoclash: CSS properties exposed from SVGs */",
     svgstyles: "svg > g {display:none;} svg > g:target{display:inline}",

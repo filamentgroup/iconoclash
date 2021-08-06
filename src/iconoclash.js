@@ -5,27 +5,41 @@
 (function(){
 	"use strict";
 	
-	var svgstore = require('svgstore');
-	var path = require( "path" );
-	var fs = require( "fs-extra" );
-	var _ = require('lodash');
-	var Mustache = require('mustache');
+	const svgstore = require('svgstore');
+	const path = require( "path" );
+	const fs = require( "fs-extra" );
+	const _ = require('lodash');
+	const Mustache = require('mustache');
 	const gzipSize = require('gzip-size');
 
 
 	var defaults = {
+		// filename for containing custom icon css rules for background image usage
 		iconcss: 'icons.css',
+		// filename for icons sprite, if writeIndividualFiles is false (default)
 		iconsvg: 'icons.svg',
+		// filename for output data which can be useful for building preview pages and docs
 		icondata: 'icons.json',
+		// filename for preview page for displaying icons
 		iconhtml: "icons.html",
+		// input for preview page containing templating to create icons.html
 		htmlinput: path.join( __dirname, "preview.html" ),
+		// prefix inside svg shape ID attributes used for custom overriding per element
 		idKey: "iconoclash",
+		// attributes to compare across svg files and expose shared properties
 		autoExpose: ["fill"],
+		// option to not build a sprite svg, instead allowing for addressable single files
 		writeIndividualFiles: false,
+		// in cases where auto-exposed attributes, eg fill, 
+		// are using defaults and not specified at all on svg shape elements, this adds them with an "inherit" value
 		setAutoExposeDefaults: false,
+		// don't go looking for customizations inside these
 		ignoreInsideElems: 'a|altGlyphDef|clipPath|color-profile|cursor|filter|font|font-face|foreignObject|image|marker|mask|pattern|script|style|switch|text|view',
+		// comment at the top of the css output
 		banner: "/* Iconoclash: CSS properties exposed from SVGs */",
+		// styles at the top of each output svg file that'll allow for background image use to work by show/hiding a group by ID/target
 		svgstyles: "svg > g {display:none;} svg > g:target{display:inline}",
+		// logging output
 		verbose: false,
 		logger: {
 			verbose: console.info,
@@ -59,10 +73,12 @@
 		
 	};
 
+	// use filename to make an svg symbol's ID
 	Iconoclash.prototype._symbolIDFromFile = function(file){
 		return file.match( /([^\/]+)\.svg/, "" )[1].replace( /\#|\>|\]|\]| |\./gmi, "-" );
 	};
 
+	// just filename
 	Iconoclash.prototype._fileName = function(file){
 		return file.match( /([^\/]+\.svg)/, "" )[1];
 	};
@@ -72,35 +88,41 @@
 		var logger = this.logger;
 		var that = this;
 		logger.ok( "Iconoclash is processing " + this.files.length + " svg files." );
+		// dataContainer ends up in the JSON output file and also drives the data for the preview page templates
 		var dataContainer = {};
 		var data = dataContainer.icons = [];
+		// used for finding shared css values to expose
 		var sharedData = dataContainer.sharedProps = [];
-		var CSS = [  ];
+		var CSS = [];
 		var classes = [];
 		
 		var globals = {};
+		// sprites is our svg sprite that we'll add every icon svg to as we manipulate their properties and extract shared vars
+		// even if we write out to separate files in the end, we'll use a single sprite first to do this work
 		var sprites = svgstore();
 
-		// note: adding styles here in defs. This is necessary to show/hide the right symbol when svg is referenced in a bg image
-		// also note: this empty string arg is required and it injects an empty symbol. Harmless but not enough to clean up rn.
+		// note: adding styles here in defs inside every svg. This is necessary to show/hide the right symbol when svg is referenced in a bg image
+		// also note: this empty string arg is required and it injects an empty symbol. Harmless but would be nice to clean out later.
 		sprites.add("", "<defs><style>" + config.svgstyles + "</style></defs>");
 
 		this.files.forEach(function(file) {
 			let stat= fs.statSync(file);
 			if ( stat.isFile() && file.indexOf(".svg") > -1 ) {  
 				let id = that._symbolIDFromFile(file);
+				// data ends up being used here and then exported to json
 				var svgdata = {
 					id: id,
 					file: that._fileName(file),
 					size: (parseFloat(stat.size) * 0.001).toFixed(2) + "kb",
-					target: config.iconsvg +"#"+ id,
-					//temp width height etc here
+					target: (config.writeIndividualFiles ? id + ".svg" : config.iconsvg ) + "#"+ id,
+					// todo: this background width and height would do better to use the svg's sizing. 
 					cssBG: "." + config.idKey + "-" + id + "{  background-image: url('"+ config.iconsvg +"#"+ id + "-bg'); background-repeat: no-repeat; background-size: 20px 20px; background-size: var(--"+ config.idKey +"-bgsize, 20px 20px); }",
 					elems: []
 				};
 
-				// add svg to the sprite
+				// add svg to the sprite using svgstore's add method
 				sprites.add(id, fs.readFileSync(file, 'utf8') );
+				// add this svg's css background to the big css file
 				classes.push( svgdata.cssBG  );
 				data.push(svgdata);
 
@@ -108,12 +130,13 @@
 		}); 
 
 		// make groups for each symbol so they can be referenced via background img
+		// the add method makes a symbol unfortunately, so we change it to a g later
 		sprites.element('symbol[id]').each(function(){
 			var id = this.attribs.id;
 			sprites.add( id + "-temporaryiconoclashsuffix", '<svg><use href="#' + id + '"/></svg>' );
 		});
 
-		// make bg specific symbols into groups
+		// make bg specific symbols into groups based on unfortunate naming workaround
 		sprites.element('symbol[id$="-temporaryiconoclashsuffix"]').each(function(){
 			this.name = "g";
 			this.attribs.id = this.attribs.id.replace("temporaryiconoclashsuffix", "bg" );
@@ -128,15 +151,16 @@
 			}
 		}
 
-		// iconoclash needs a default attribute explicitly set
-		// so, for svg source files that rely on a default fill, stroke, etc, 
-		// this option will set autoExpose'd attrs to 'initial' if they are not defined
-		// default false since it could cause unexpected results.
+		// iconoclash will only see and compare attributes that are set explicitly
+		// for example, a path might rely on its black default stroke, but unless it has fill="black" or fill="initial", 
+		// we won't see it. that's often fine - maybe you only want explicitly set attributes to be exposed for customizing.
+		// but if you want them all to be customizable
+		// this option will set all autoExpose'd attrs to 'initial' if they are not defined
+		// default false since it could cause unexpected results, (though it shouldn't)
 		if( config.setAutoExposeDefaults  ){
 			sprites.element('symbol path, symbol rect, symbol circle, symbol ellipse, symbol line, symbol polyline, symbol polygon').each(function(){
 				let elem = this;
 				config.autoExpose.forEach(function(i){
-					let attr = i;
 					if(!elem.attribs[i]){
 						elem.attribs[i] = "initial";
 					}
@@ -183,6 +207,7 @@
 				for( var j = 0; j < customProps.length; j++ ){
 					var prop = customProps[ j ];
 					var itemVar = "--" + parentName + "-" + elemType + (i+1) + "-" + prop;
+					// fallbacks will be the last argument in the css custom property usage
 					var fallback = "initial";
 					if( this.attribs[prop] !== undefined ){
 						fallback = this.attribs[prop];
@@ -236,11 +261,15 @@
 		});
 
 		// add shared bg size rule
+		// todo: this could be more customized via svg particulars
 		CSS.push( "--"+ config.idKey + "-bgsize: 20px 20px" );
 
+		// write one svg sprite, by default
 		if( !config.writeIndividualFiles ){
 			fs.writeFileSync(this.output + config.iconsvg, sprites);
 		}
+		// or if not, write out individual files by teasing them out of the sprite and making new ones
+		// this could be more efficient I'm sure. But the approach is helpful because having them all in the sprite to start helps in exposing shared props
 		else{
 			// make a new sprite for each symbol, 
 			// set its children to a filtered subset of the big sprite
@@ -260,6 +289,7 @@
 			});
 			
 		}
+		// write more dist files
 		let svgStat= fs.statSync(this.output + config.iconsvg);
 		let svgFile = fs.readFileSync(this.output + config.iconsvg, 'utf8');
 		dataContainer.icons.svgFileSize = (svgStat.size * .001).toFixed(2) + "kb";
