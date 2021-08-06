@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>svg > g {display:none;} svg > g:target{display:inline}</style></defs><symbol id="calc" viewBox="0 0 390 390">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>calc</title>
+    <desc>Created with Sketch.</desc>
+    <g id="calc" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" style="fill: var(--iconoclash-shared-0,none);stroke: var(--iconoclash-shared-0,none)">
+        <path d="M284.266,314.19 C284.266,321.46 278.371,327.35 271.102,327.35 L119.156,327.35 C111.891,327.35 106,321.46 106,314.19 L106,87.16 C106,79.89 111.891,74 119.156,74 L271.102,74 C278.371,74 284.266,79.89 284.266,87.16 L284.266,314.19 Z" id="Path" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <polygon id="Fill-25" fill="#64C5E5" points="126.18 135.13 264.078 135.13 264.078 104.49 126.18 104.49" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M126.18,135.13 L264.078,135.13 L264.078,104.49 L126.18,104.49 L126.18,135.13 Z M126.18,164.07 L264.078,164.07 L264.078,153.01 L126.18,153.01 L126.18,164.07 Z" id="Stroke-26" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <polygon id="Fill-27" fill="#64C5E5" points="140.051 210.93 165.602 210.93 165.602 185.38 140.051 185.38" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <polygon id="Stroke-28" stroke="#233881" stroke-width="6.384" points="140.051 210.93 165.602 210.93 165.602 185.38 140.051 185.38" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <polygon id="Fill-29" fill="#64C5E5" points="182.352 210.93 207.906 210.93 207.906 185.38 182.352 185.38" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <polygon id="Stroke-30" stroke="#233881" stroke-width="6.384" points="182.352 210.93 207.906 210.93 207.906 185.38 182.352 185.38" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <polygon id="Fill-31" fill="#64C5E5" points="224.656 210.93 250.211 210.93 250.211 185.38 224.656 185.38" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <polygon id="Stroke-32" stroke="#233881" stroke-width="6.384" points="224.656 210.93 250.211 210.93 250.211 185.38 224.656 185.38" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <polygon id="Fill-33" fill="#64C5E5" points="140.051 253.9 165.602 253.9 165.602 228.34 140.051 228.34" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <polygon id="Stroke-34" stroke="#233881" stroke-width="6.384" points="140.051 253.9 165.602 253.9 165.602 228.34 140.051 228.34" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <polygon id="Fill-35" fill="#64C5E5" points="182.352 253.9 207.906 253.9 207.906 228.34 182.352 228.34" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <polygon id="Stroke-36" stroke="#233881" stroke-width="6.384" points="182.352 253.9 207.906 253.9 207.906 228.34 182.352 228.34" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <polygon id="Fill-37" fill="#64C5E5" points="224.656 253.9 250.211 253.9 250.211 228.34 224.656 228.34" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <polygon id="Stroke-38" stroke="#233881" stroke-width="6.384" points="224.656 253.9 250.211 253.9 250.211 228.34 224.656 228.34" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <polygon id="Fill-39" fill="#64C5E5" points="140.047 296.87 165.602 296.87 165.602 271.31 140.047 271.31" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <polygon id="Stroke-40" stroke="#233881" stroke-width="6.384" points="140.047 296.87 165.602 296.87 165.602 271.31 140.047 271.31" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <polygon id="Fill-41" fill="#64C5E5" points="182.352 296.87 207.906 296.87 207.906 271.31 182.352 271.31" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <polygon id="Stroke-42" stroke="#233881" stroke-width="6.384" points="182.352 296.87 207.906 296.87 207.906 271.31 182.352 271.31" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <polygon id="Fill-43" fill="#64C5E5" points="224.656 296.87 250.211 296.87 250.211 271.31 224.656 271.31" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M224.656,296.87 L250.211,296.87 L250.211,271.31 L224.656,271.31 L224.656,296.87 Z M267.602,225.84 L267.602,298.52 C267.602,305.78 261.711,311.68 254.438,311.68 L210.895,311.68 L267.602,225.84 Z" id="Stroke-44" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+    </g>
+</symbol><g id="calc-bg"><use href="#calc"/></g></svg>

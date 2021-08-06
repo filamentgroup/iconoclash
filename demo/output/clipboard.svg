@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>svg > g {display:none;} svg > g:target{display:inline}</style></defs><symbol id="clipboard" viewBox="0 0 390 390">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>clipboard</title>
+    <desc>Created with Sketch.</desc>
+    <g id="clipboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" style="fill: var(--iconoclash-shared-0,none);stroke: var(--iconoclash-shared-0,none)">
+        <polygon id="Fill-129" fill="#64C5E5" points="107 331.558 291.629 331.558 291.629 111 107 111" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <polygon id="Stroke-130" stroke="#233881" stroke-width="6.384" points="107 331.558 291.629 331.558 291.629 111 107 111" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <polygon id="Fill-131" fill="#FFFFFE" points="122 316.777 277.296 316.777 277.296 111 122 111" style="fill: var(--iconoclash-shared-3,#FFFFFE);"/>
+        <polygon id="Stroke-132" stroke="#233881" stroke-width="6.384" points="122 316.777 277.296 316.777 277.296 111 122 111" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M140,193.5 L258.68,193.5" id="Fill-133" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M140,193.5 L258.68,193.5" id="Stroke-134" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M140,233.5 L167.774,233.5" id="Fill-135" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M140,233.5 L167.774,233.5" id="Stroke-136" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M179,233.5 L258.969,233.5" id="Fill-137" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M179,233.5 L258.969,233.5" id="Stroke-138" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M140,212.5 L185.453,212.5" id="Fill-139" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M140,212.5 L185.453,212.5" id="Stroke-140" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M198,212.5 L258.602,212.5" id="Fill-141" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M198,212.5 L258.602,212.5" id="Stroke-142" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M140,253.5 L258.68,253.5" id="Fill-143" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M140,253.5 L258.68,253.5" id="Stroke-144" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M220.871,101.726 C220.879,101.457 220.914,101.171 220.914,100.894 C220.914,88.808 211.113,79 199.027,79 C186.937,79 177.136,88.808 177.136,100.894 C177.136,101.171 177.172,101.457 177.187,101.726 L162,101.726 L162,125.289 L236.062,125.289 L236.062,101.726 L220.871,101.726" id="Fill-153" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M220.871,101.726 C220.879,101.457 220.914,101.171 220.914,100.894 C220.914,88.808 211.113,79 199.027,79 C186.937,79 177.136,88.808 177.136,100.894 C177.136,101.171 177.172,101.457 177.187,101.726 L162,101.726 L162,125.289 L236.062,125.289 L236.062,101.726 L220.871,101.726 Z" id="Path" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M199.062,169.109 C193.503,169.109 189,164.609 189,159.051 C189,153.492 193.503,149 199.062,149 C204.617,149 209.121,153.492 209.121,159.051 C209.121,164.609 204.617,169.109 199.062,169.109 Z" id="Path" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M220.715,159.121 C220.715,158.457 220.683,157.812 220.625,157.176 L224.972,156.027 L223.019,148.574 L218.586,149.73 C217.656,147.785 216.441,146 214.988,144.418 L217.84,140.738 L211.738,136.023 L208.855,139.766 C206.984,138.809 204.972,138.121 202.844,137.742 L202.844,133 L195.14,133 L195.14,137.742 C193.117,138.098 191.191,138.742 189.406,139.621 L186.57,135.84 L180.402,140.469 L183.211,144.199 C182.136,145.32 181.191,146.555 180.386,147.895 L176.058,146.305 L173.394,153.527 L177.644,155.09 C177.39,156.395 177.258,157.746 177.258,159.121 C177.258,159.598 177.285,160.066 177.308,160.539 L173,161.668 L174.953,169.121 L179.168,168.016 C180.082,170.051 181.297,171.922 182.758,173.562 L180.133,176.961 L186.234,181.664 L188.828,178.324 C190.761,179.355 192.89,180.094 195.14,180.496 L195.14,184.695 L202.844,184.695 L202.844,180.496 C204.972,180.121 207,179.426 208.871,178.477 L211.402,181.855 L217.57,177.234 L215,173.801 C216.097,172.617 217.043,171.301 217.847,169.902 L221.922,171.395 L224.582,164.168 L220.429,162.633 C220.613,161.492 220.715,160.312 220.715,159.121 Z" id="Path" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+    </g>
+</symbol><g id="clipboard-bg"><use href="#clipboard"/></g></svg>

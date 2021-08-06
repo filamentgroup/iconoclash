@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>svg > g {display:none;} svg > g:target{display:inline}</style></defs><symbol id="compass" viewBox="0 0 390 390">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>compass</title>
+    <desc>Created with Sketch.</desc>
+    <g id="compass" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" style="fill: var(--iconoclash-shared-0,none);stroke: var(--iconoclash-shared-0,none)">
+        <polygon id="Path" stroke="#233881" stroke-width="6.384" points="139.6 290.08 198.18 121.7 177.02 114.33 125 285.01 125 321.98" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <polygon id="Path" stroke="#233881" stroke-width="6.384" points="264.54 321.98 265.3 290.08 215.55 114.33 194.39 121.7" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M221.22,123.39 C221.22,137.15 210.06,148.32 196.29,148.32 C182.51,148.32 171.36,137.15 171.36,123.39 C171.36,109.63 182.51,98.47 196.29,98.47 C210.06,98.47 221.22,109.63 221.22,123.39" id="Fill-90" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M221.22,123.39 C221.22,137.15 210.06,148.32 196.29,148.32 C182.51,148.32 171.36,137.15 171.36,123.39 C171.36,109.63 182.51,98.47 196.29,98.47 C210.06,98.47 221.22,109.63 221.22,123.39 Z" id="Path" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M265.31,160.34 C246.88,177.38 222.23,187.8 195.15,187.8 C168.07,187.8 143.42,177.38 125,160.34 L265.31,160.34 Z" id="Path" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M196.29,167.88 L196.29,199.55 L196.29,167.88 Z" id="Path" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M196.29,98.47 C199.2,98.47 202.01,98.97 204.6,99.89 L204.6,77.32 C204.6,72.73 200.88,69 196.29,69 C191.69,69 187.97,72.73 187.97,77.32 L187.97,99.89 C190.57,98.97 193.37,98.47 196.29,98.47" id="Fill-92" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M196.29,98.47 C199.2,98.47 202.01,98.97 204.6,99.89 L204.6,77.32 C204.6,72.73 200.88,69 196.29,69 C191.69,69 187.97,72.73 187.97,77.32 L187.97,99.89 C190.57,98.97 193.37,98.47 196.29,98.47 Z" id="Stroke-93" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M159.16,256.46 C159.16,265.88 151.51,273.52 142.08,273.52 C132.65,273.52 125,265.88 125,256.46 C125,247.01 132.65,239.37 142.08,239.37 C151.51,239.37 159.16,247.01 159.16,256.46" id="Fill-94" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M159.16,256.46 C159.16,265.88 151.51,273.52 142.08,273.52 C132.65,273.52 125,265.88 125,256.46 C125,247.01 132.65,239.37 142.08,239.37 C151.51,239.37 159.16,247.01 159.16,256.46 Z" id="Stroke-95" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+    </g>
+</symbol><g id="compass-bg"><use href="#compass"/></g></svg>

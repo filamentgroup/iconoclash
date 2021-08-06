@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>svg > g {display:none;} svg > g:target{display:inline}</style></defs><symbol id="triangle" viewBox="0 0 390 390">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>triangle</title>
+    <desc>Created with Sketch.</desc>
+    <g id="triangle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" style="fill: var(--iconoclash-shared-0,none);stroke: var(--iconoclash-shared-0,none)">
+        <path d="M273.969,274.25 L179.731,274.25 L273.969,180.01 L273.969,274.25 Z M68,321.35 L321.348,321.35 L321.348,68 L68,321.35 Z" id="Fill-45" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M273.969,274.25 L179.731,274.25 L273.969,180.01 L273.969,274.25 Z M68,321.35 L321.348,321.35 L321.348,68 L68,321.35 Z" id="Stroke-46" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M99.043,308.18 L99.043,321.35" id="Fill-47" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M99.043,308.18 L99.043,321.35" id="Stroke-48" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M115,308.18 L115,321.35" id="Fill-49" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M115,308.18 L115,321.35" id="Stroke-50" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M130.961,308.18 L130.961,321.35" id="Fill-51" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M130.961,308.18 L130.961,321.35" id="Stroke-52" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M146.922,308.18 L146.922,321.35" id="Fill-53" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M146.922,308.18 L146.922,321.35" id="Stroke-54" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M162.883,308.18 L162.883,321.35" id="Fill-55" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M162.883,308.18 L162.883,321.35" id="Stroke-56" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M178.844,308.18 L178.844,321.35" id="Fill-57" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M178.844,308.18 L178.844,321.35" id="Stroke-58" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M194.801,308.18 L194.801,321.35" id="Fill-59" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M194.801,308.18 L194.801,321.35" id="Stroke-60" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M210.762,308.18 L210.762,321.35" id="Fill-61" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M210.762,308.18 L210.762,321.35" id="Stroke-62" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M226.719,308.18 L226.719,321.35" id="Fill-63" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M226.719,308.18 L226.719,321.35" id="Stroke-64" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M242.684,308.18 L242.684,321.35" id="Fill-65" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M242.684,308.18 L242.684,321.35" id="Stroke-66" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M258.645,308.18 L258.645,321.35" id="Fill-67" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M258.645,308.18 L258.645,321.35" id="Stroke-68" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M274.602,308.18 L274.602,321.35" id="Fill-69" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M274.602,308.18 L274.602,321.35" id="Stroke-70" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M290.559,308.18 L290.559,321.35" id="Fill-71" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M290.559,308.18 L290.559,321.35" id="Stroke-72" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+        <path d="M306.524,308.18 L306.524,321.35" id="Fill-73" fill="#64C5E5" style="fill: var(--iconoclash-shared-2,#64C5E5);"/>
+        <path d="M306.524,308.18 L306.524,321.35" id="Stroke-74" stroke="#233881" stroke-width="6.384" style=";stroke: var(--iconoclash-shared-1,#233881)"/>
+    </g>
+</symbol><g id="triangle-bg"><use href="#triangle"/></g></svg>
