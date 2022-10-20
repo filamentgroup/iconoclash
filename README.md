@@ -1,3 +1,5 @@
+:warning: This project is archived and the repository is no longer maintained. 
+
 ## Iconoclash
 
 A workflow for configurable external svg sets.
